@@ -6,7 +6,7 @@ import { useAuth } from "../context/AuthContext";
 
 // AdminLoginPage component to handle admin login functionality
 const AdminLoginPage = () => {
-    // Use the useNavigate hook to programmatically navigate to different routes and useAuth to access authentication context
+    //  Use the useNavigate hook to programmatically navigate to different routes and useAuth to access authentication context
     const navigate = useNavigate();
     // Destructure the login function from the authentication context to update the authentication state upon successful login
     const { login } = useAuth();
@@ -51,7 +51,7 @@ const AdminLoginPage = () => {
         <main>
             <h1>Admin Login</h1>
 
-// Render a form with input fields for email and password, and a submit button to trigger the login process. Display any error messages that occur during login.
+{/* // Render a form with input fields for email and password, and a submit button to trigger the login process. Display any error messages that occur during login. */}
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="email">Email</label>
@@ -65,7 +65,7 @@ const AdminLoginPage = () => {
                     />
                 </div>
 
-// Input field for password with a label, and an onChange handler to update the password state variable as the user types
+{/* // Input field for password with a label, and an onChange handler to update the password state variable as the user types */}
                 <div>
                     <label htmlFor="password">Password</label>
                     <input
@@ -80,7 +80,7 @@ const AdminLoginPage = () => {
 
                 {error && <p>{error}</p>}
 
-// Submit button for the login form, which is disabled while the login process is ongoing to prevent multiple submissions. The button text changes to indicate that the login is in progress.
+{/* // Submit button for the login form, which is disabled while the login process is ongoing to prevent multiple submissions. The button text changes to indicate that the login is in progress. */}
                 <button type="submit" disabled={isLoading}>
                     {isLoading ? "Logging in..." : "Log In"}
                 </button>
