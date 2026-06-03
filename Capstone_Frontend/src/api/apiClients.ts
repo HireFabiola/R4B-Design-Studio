@@ -1,9 +1,10 @@
-// Import the axios library to create an API client
+// Import and configure Axios for API calls
 import axios from "axios";
 
-// Create an axios instance with a base URL for the API endpoints
+// Create an Axios instance with the base URL set to the API URL defined in the environment variables
 const apiClient = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
+//  Add a request interceptor to include the authentication token in the headers of each request if it exists in localStorage
 export default apiClient;
