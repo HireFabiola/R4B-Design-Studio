@@ -14,6 +14,7 @@ import WorkPage from "./pages/WorkPage";
 import ContactPage from "./pages/ContactPage";
 
 // Importing page components for the admin dashboard  
+import ProtectedRoute from "./components/ProtectedRoute";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import InquiriesPage from "./pages/InquiriesPage";
@@ -37,10 +38,26 @@ function App() {
         {/* Admin Website routes */}
         <Route element={<AdminLayout />}>
           <Route path="/admin/login" element={<AdminLoginPage />} />
-          <Route path="/admin/dashboard" element={<DashboardPage />} />
-          <Route path="/admin/inquiries" element={<InquiriesPage />} />
-          <Route path="/admin/projects" element={<ProjectsPage />} />
-          <Route path="/admin/tasks" element={<TasksPage />} />
+          <Route path="/admin/dashboard" element={
+            <ProtectedRoute>
+              <DashboardPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/inquiries" element={
+            <ProtectedRoute>
+              <InquiriesPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/projects" element={
+            <ProtectedRoute>
+              <ProjectsPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/tasks" element={
+            <ProtectedRoute>
+              <TasksPage />
+            </ProtectedRoute>
+          } />
         </Route>
       </Routes>
     </BrowserRouter>
