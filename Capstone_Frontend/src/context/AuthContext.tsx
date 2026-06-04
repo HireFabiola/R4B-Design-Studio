@@ -35,6 +35,7 @@ export const AuthProvider = ({
             setToken(savedToken);
             setUser(JSON.parse(savedUser));
         }
+        setIsAuthLoading(false);
     }, []);
 
     // Function to handle user login, which updates the state and localStorage with the user's information and authentication token
