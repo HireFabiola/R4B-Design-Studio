@@ -1,33 +1,25 @@
 import { useState } from "react";
+import { useForm } from "../hooks/useForm";
 import apiClient from "../api/apiClient";
 
 const ContactPage = () => {
-  const [formData, setFormData] = useState({
-    clientName: "",
-    email: "",
-    businessName: "",
-    projectType: "website",
-    budgetRange: "not sure",
-    message: "",
-  });
-
+const {
+  formData,
+  handleChange,
+  resetForm,
+} = useForm({
+  clientName: "",
+  email: "",
+  businessName: "",
+  projectType: "website",
+  budgetRange: "not sure",
+  message: "",
+});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleChange = (
-    event:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-      | React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    const { name, value } = event.target;
 
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>
@@ -45,14 +37,7 @@ const ContactPage = () => {
         "Thank you! Your inquiry has been submitted."
       );
 
-      setFormData({
-        clientName: "",
-        email: "",
-        businessName: "",
-        projectType: "website",
-        budgetRange: "not sure",
-        message: "",
-      });
+    resetForm();
     } catch {
       setErrorMessage(
         "Something went wrong. Please try again."
