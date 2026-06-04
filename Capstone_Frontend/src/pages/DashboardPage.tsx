@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getInquiries } from "../services/inquiryService";
 import { getProjects } from "../services/projectService";
 import { getTasks } from "../services/taskService";
+import { Link } from "react-router-dom";
 
 // DashboardPage component to display an overview of key metrics such as the number of client inquiries, projects, and tasks in the admin dashboard
 const DashboardPage = () => {
@@ -62,6 +63,12 @@ const DashboardPage = () => {
           <p>{taskCount}</p>
         </article>
       </div>
+
+      {/* <div>
+        <Link to="/admin/inquiries">View Inquiries</Link>
+        <Link to="/admin/projects">View Projects</Link>
+        <Link to="/admin/tasks">View Tasks</Link>
+      </div> */}
     </section>
   );
 };
