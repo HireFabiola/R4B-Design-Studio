@@ -20,34 +20,32 @@ const AdminLayout = () => {
         }`;
 
     return (
-        <div className="min-h-screen bg-[#F5EADF] lg:flex">
+        <div className="min-h-screen bg-[#F5EADF] xl:flex">
             {/* Mobile / Tablet Header */}
-            <header className="border-b border-[#1C3431] bg-[#122321] px-4 py-3 lg:hidden">
-                <div className="flex items-start justify-between">
-                    <div className="flex flex-col items-center">
-                        <img
-                            src={logo}
-                            alt="R4B Design Studio"
-                            className="h-24 w-24 object-contain brightness-0 invert -mb-4"
-                        />
+            <header className="border-b border-[#1C3431] bg-[#122321] px-4 py-3 xl:hidden">
+                <div className="relative flex flex-col items-center justify-center">
+                    <img
+                        src={logo}
+                        alt="R4B Design Studio"
+                        className="h-56 w-56 object-contain brightness-0 invert"
+                    />
 
-                        <div className="flex items-center justify-center">
-                            <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-[#D69A2D]">
-                                Design
-                            </span>
+                    <div className="-mt-3 flex items-center justify-center">
+                        <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-[#D69A2D]">
+                            Design
+                        </span>
 
-                            <span className="mx-2 text-[#D69A2D]">•</span>
+                        <span className="mx-2 text-[#D69A2D]">•</span>
 
-                            <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-white">
-                                Studio
-                            </span>
-                        </div>
+                        <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-white">
+                            Studio
+                        </span>
                     </div>
 
                     <button
                         type="button"
                         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                        className="mt-3 rounded-lg border border-[#D69A2D]/60 px-3 py-2 text-sm font-medium text-white hover:text-[#D69A2D]"
+                        className="absolute right-0 top-1/2 -translate-y-1/2 rounded-lg border border-[#D69A2D]/60 px-3 py-2 text-sm font-medium text-white hover:text-[#D69A2D]"
                     >
                         ☰
                     </button>
@@ -83,7 +81,7 @@ const AdminLayout = () => {
             </header>
 
             {/* Desktop Sidebar */}
-            <aside className="hidden bg-[#122321] p-5 text-white lg:flex lg:min-h-screen lg:w-72 lg:flex-col">
+            <aside className="hidden bg-[#122321] p-5 text-white xl:flex xl:min-h-screen xl:w-72 xl:flex-col">
                 {/* Branding */}
                 <div className="mb-8 flex flex-col items-center">
                     <img
@@ -137,7 +135,7 @@ const AdminLayout = () => {
                 </nav>
 
                 {/* User Card */}
-                <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-4 text-center lg:mt-auto">
+                <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-4 text-center xl:mt-auto">
                     <p className="font-semibold">Fabiola Aurelien</p>
 
                     <p className="text-sm text-stone-300">
@@ -155,8 +153,10 @@ const AdminLayout = () => {
             </aside>
 
             {/* Main Content */}
-            <main className="flex-1 p-4 sm:p-6 lg:p-8">
-                <Outlet />
+            <main className="flex-1 overflow-x-hidden p-4 md:p-6 xl:p-8">
+                <div className="mx-auto w-full max-w-[1320px]">
+                    <Outlet />
+                </div>
             </main>
         </div>
     );

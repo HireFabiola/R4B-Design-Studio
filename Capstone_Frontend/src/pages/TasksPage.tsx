@@ -1,4 +1,3 @@
-// Import necessary dependencies and services for managing tasks and projects, as well as custom hooks for CRUD operations and form handling.
 import { useEffect, useState } from "react";
 
 import {
@@ -16,7 +15,6 @@ import type { Project } from "../types/Project";
 import { useCrud } from "../hooks/useCrud";
 import { useForm } from "../hooks/useForm";
 
-// TasksPage component to display a list of tasks in the admin dashboard
 const TasksPage = () => {
   const {
     items: tasks,
@@ -33,10 +31,8 @@ const TasksPage = () => {
     deleteItem: deleteTask,
   });
 
-  // State variable to manage the list of projects, which is used to associate tasks with specific projects when creating or updating tasks. It is populated by fetching the projects from the API when the component mounts.
   const [projects, setProjects] = useState<Project[]>([]);
 
-  // State variable to manage the form data for creating a new task, including title, description, status, and associated project ID. It uses the useForm custom hook to handle form state and input changes.
   const { formData, handleChange, resetForm } = useForm({
     title: "",
     description: "",
@@ -44,7 +40,14 @@ const TasksPage = () => {
     projectId: "",
   });
 
-  // useEffect hook to fetch projects from the API when the component mounts. It calls the getProjects service function, updates the state with the retrieved projects, and handles any errors that may occur during the fetch process.
+  const getProjectTitle = (projectId: Task["projectId"]) => {
+  if (typeof projectId === "string") {
+    return projectId;
+  }
+
+  return projectId.title;
+};
+
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -58,7 +61,6 @@ const TasksPage = () => {
     fetchProjects();
   }, [setError]);
 
-  // Function to handle the submission of the form for creating a new task. It calls the addItem function from the useCrud hook to create a new task with the form data, and resets the form after successful creation. If there is an error during task creation, it sets an error message in the state.
   const handleCreateTask = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
@@ -72,7 +74,6 @@ const TasksPage = () => {
     }
   };
 
-  // Function to handle changes in the task status for a specific task. It calls the editItem function from the useCrud hook to update the task's status, and sets an error message if there is an issue during the update process.
   const handleStatusChange = async (
     id: string,
     status: Task["status"]
@@ -84,7 +85,6 @@ const TasksPage = () => {
     }
   };
 
-  // Function to handle the deletion of a task. It calls the removeItem function from the useCrud hook to delete the task, and sets an error message if there is an issue during the deletion process.
   const handleDeleteTask = async (id: string) => {
     try {
       await removeItem(id);
@@ -94,93 +94,151 @@ const TasksPage = () => {
   };
 
   if (isLoading) return <p>Loading tasks...</p>;
-
   if (error) return <p>{error}</p>;
 
-  // Conditional rendering based on the loading state and error state. If the data is still loading, it displays a loading message. If there is an error, it displays the error message. Otherwise, it renders the form for creating a new task and the list of existing tasks with options to change their status or delete them.
   return (
-    <section>
-      <h1>Tasks</h1>
+    <section className="space-y-6">
+      <div>
+        <h1 className="text-3xl font-bold text-[#122321]">
+          Tasks
+        </h1>
 
-      <form onSubmit={handleCreateTask}>
-        <h2>Create New Task</h2>
+        <p className="mt-1 text-stone-600">
+          Track project tasks, update progress, and manage action items.
+        </p>
+      </div>
 
-        <input
-          name="title"
-          placeholder="Task title"
-          value={formData.title}
-          onChange={handleChange}
-          required
-        />
+      <form
+        onSubmit={handleCreateTask}
+        className="rounded-2xl border border-[#D8C6B5] bg-[#FFF9F4] p-5 shadow-sm"
+      >
+        <h2 className="mb-4 text-xl font-bold text-[#122321]">
+          Create New Task
+        </h2>
 
-        <textarea
-          name="description"
-          placeholder="Task description"
-          value={formData.description}
-          onChange={handleChange}
-        />
+        <div className="grid gap-4 md:grid-cols-2">
+          <input
+            name="title"
+            placeholder="Task title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+            className="rounded-xl border border-[#D8C6B5] bg-white px-4 py-2"
+          />
 
-        <select
-          name="status"
-          value={formData.status}
-          onChange={handleChange}
+          <select
+            name="status"
+            value={formData.status}
+            onChange={handleChange}
+            className="rounded-xl border border-[#D8C6B5] bg-white px-4 py-2"
+          >
+            <option value="todo">Todo</option>
+            <option value="in-progress">In Progress</option>
+            <option value="complete">Complete</option>
+          </select>
+
+          <select
+            name="projectId"
+            value={formData.projectId}
+            onChange={handleChange}
+            required
+            className="rounded-xl border border-[#D8C6B5] bg-white px-4 py-2 md:col-span-2"
+          >
+            <option value="">Select Project</option>
+
+            {projects.map((project) => (
+              <option key={project._id} value={project._id}>
+                {project.title}
+              </option>
+            ))}
+          </select>
+
+          <textarea
+            name="description"
+            placeholder="Task description"
+            value={formData.description}
+            onChange={handleChange}
+            rows={4}
+            className="rounded-xl border border-[#D8C6B5] bg-white px-4 py-2 md:col-span-2"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="mt-4 rounded-xl bg-[#D69A2D] px-5 py-2 font-medium text-white transition hover:bg-[#B8862B]"
         >
-          <option value="todo">Todo</option>
-          <option value="in-progress">In Progress</option>
-          <option value="complete">Complete</option>
-        </select>
-
-        <select
-          name="projectId"
-          value={formData.projectId}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Select Project</option>
-
-          {projects.map((project) => (
-            <option key={project._id} value={project._id}>
-              {project.title}
-            </option>
-          ))}
-        </select>
-
-        <button type="submit">Create Task</button>
+          Create Task
+        </button>
       </form>
 
       {tasks.length === 0 ? (
-        <p>No tasks yet.</p>
+        <p className="rounded-2xl border border-[#D8C6B5] bg-[#FFF9F4] p-5 text-stone-600">
+          No tasks yet.
+        </p>
       ) : (
-        <ul>
+        <div className="grid gap-5 lg:grid-cols-2">
           {tasks.map((task) => (
-            <li key={task._id}>
-              <h2>{task.title}</h2>
+            <article
+              key={task._id}
+              className="rounded-2xl border border-[#D8C6B5] bg-[#FFF9F4] p-5 shadow-sm"
+            >
+              <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <h2 className="text-xl font-semibold text-[#122321]">
+                    {task.title}
+                  </h2>
 
-              <p>{task.description}</p>
+                  <p className="text-sm text-stone-500">
+                Project: {getProjectTitle(task.projectId)}
+                  </p>
+                </div>
 
-              <select
-                value={task.status}
-                onChange={(event) =>
-                  handleStatusChange(
-                    task._id,
-                    event.target.value as Task["status"]
-                  )
-                }
-              >
-                <option value="todo">Todo</option>
-                <option value="in-progress">In Progress</option>
-                <option value="complete">Complete</option>
-              </select>
+                <span
+                  className={`rounded-full px-3 py-1 text-xs font-semibold uppercase ${
+                    task.status === "todo"
+                      ? "bg-[#D69A2D]/15 text-[#9b6a16]"
+                      : task.status === "in-progress"
+                      ? "bg-[#3F6F68]/15 text-[#3F6F68]"
+                      : "bg-[#122321]/10 text-[#122321]"
+                  }`}
+                >
+                  {task.status}
+                </span>
+              </div>
 
-              <button
-                type="button"
-                onClick={() => handleDeleteTask(task._id)}
-              >
-                Delete Task
-              </button>
-            </li>
+              {task.description && (
+                <p className="mb-5 text-stone-700">
+                  {task.description}
+                </p>
+              )}
+
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <select
+                  value={task.status}
+                  onChange={(event) =>
+                    handleStatusChange(
+                      task._id,
+                      event.target.value as Task["status"]
+                    )
+                  }
+                  className="rounded-xl border border-[#D8C6B5] bg-white px-4 py-2"
+                >
+                  <option value="todo">Todo</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="complete">Complete</option>
+                </select>
+
+                <button
+                  type="button"
+                  onClick={() => handleDeleteTask(task._id)}
+                  className="rounded-xl border border-red-200 px-4 py-2 text-sm font-medium text-red-700 transition hover:bg-red-50"
+                >
+                  Delete Task
+                </button>
+              </div>
+            </article>
           ))}
-        </ul>
+        </div>
       )}
     </section>
   );

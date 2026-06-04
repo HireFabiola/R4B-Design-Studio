@@ -169,7 +169,7 @@ const revenueData = {
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <Link to="/admin/inquiries">
           <MetricCard
             title="New Inquiries"
@@ -204,7 +204,7 @@ const revenueData = {
       </div>
 
       <div className="grid gap-6 xl:grid-cols-3">
-        <section className="rounded-2xl border border-[#D8C6B5] bg-[#FFF9F4] p-5 shadow-sm xl:col-span-2">
+     <section className="overflow-hidden rounded-2xl border border-[#D8C6B5] bg-[#FFF9F4] p-5 shadow-sm">
           <h2 className="mb-4 text-xl font-bold text-[#122321]">
             Recent Inquiries
           </h2>
@@ -216,6 +216,7 @@ const revenueData = {
                   <th className="py-3">Client</th>
                   <th className="py-3">Need</th>
                   <th className="py-3">Budget</th>
+                  
                   <th className="py-3">Status</th>
                 </tr>
               </thead>
@@ -247,7 +248,7 @@ const revenueData = {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-[#D8C6B5] bg-[#FFF9F4] p-5 shadow-sm">
+<section className="overflow-hidden rounded-2xl border border-[#D8C6B5] bg-[#FFF9F4] p-5 shadow-sm">
           <h2 className="mb-4 text-xl font-bold text-[#122321]">
             Open Tasks
           </h2>
@@ -270,7 +271,7 @@ const revenueData = {
         </section>
       </div>
 
-      <section className="rounded-2xl border border-[#D8C6B5] bg-[#FFF9F4] p-5 shadow-sm">
+<section className="overflow-hidden rounded-2xl border border-[#D8C6B5] bg-[#FFF9F4] p-5 shadow-sm">
         <h2 className="mb-4 text-xl font-bold text-[#122321]">
           Active Projects
         </h2>
