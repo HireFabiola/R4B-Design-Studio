@@ -87,75 +87,80 @@ const InquiriesPage = () => {
         <p>No inquiries yet.</p>
       ) : (
         <ul>
-          {inquiries.map((inquiry) => (
-            <li key={inquiry._id}>
-              <h2>{inquiry.clientName}</h2>
+          <div className="grid gap-5">
+  {inquiries.map((inquiry) => (
+    <article
+      key={inquiry._id}
+      className="rounded-2xl border border-[#D8C6B5] bg-[#FFF9F4] p-5 shadow-sm"
+    >
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+        <div className="space-y-2">
+          <div className="flex items-center gap-3">
+            <h2 className="text-xl font-semibold text-[#122321]">
+              {inquiry.clientName}
+            </h2>
 
-              <p>
-                <strong>Business:</strong>{" "}
-                {inquiry.businessName}
-              </p>
+            <span
+              className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                inquiry.status === "new"
+                  ? "bg-blue-100 text-blue-700"
+                  : inquiry.status === "discussion"
+                  ? "bg-yellow-100 text-yellow-700"
+                  : inquiry.status === "qualified"
+                  ? "bg-green-100 text-green-700"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+            >
+              {inquiry.status.toUpperCase()}
+            </span>
+          </div>
 
-              <p>
-                <strong>Project Type:</strong>{" "}
-                {inquiry.projectType}
-              </p>
+          <p className="font-medium text-[#D69A2D]">
+            {inquiry.businessName}
+          </p>
 
-              <p>
-                <strong>Email:</strong>{" "}
-                {inquiry.email}
-              </p>
+          <div className="flex flex-wrap gap-3 text-sm text-stone-600">
+            <span>{inquiry.projectType}</span>
+            <span>•</span>
+            <span>{inquiry.budgetRange}</span>
+          </div>
 
-              <p>
-                <strong>Message:</strong>{" "}
-                {inquiry.message}
-              </p>
+          <p className="max-w-3xl text-stone-700">
+            {inquiry.message}
+          </p>
+        </div>
 
-              {/* Status dropdown for updating inquiry status */}
-              <select
-                value={inquiry.status}
-                onChange={(event) =>
-                  handleStatusChange(
-                    inquiry._id,
-                    event.target.value as Inquiry["status"]
-                  )
-                }
-              >
-                <option value="new">New</option>
-                <option value="discussion">
-                  Discussion
-                </option>
-                <option value="qualified">
-                  Qualified
-                </option>
-                <option value="closed">
-                  Closed
-                </option>
-              </select>
+        <div className="flex flex-col gap-3">
+          <select
+            value={inquiry.status}
+            onChange={(event) =>
+              handleStatusChange(
+                inquiry._id,
+                event.target.value as Inquiry["status"]
+              )
+            }
+            className="rounded-xl border border-[#D8C6B5] bg-white px-4 py-2"
+          >
+            <option value="new">New</option>
+            <option value="discussion">Discussion</option>
+            <option value="qualified">Qualified</option>
+            <option value="closed">Closed</option>
+          </select>
 
-              {/* Only show Create Project button when inquiry is qualified */}
-              {inquiry.status === "qualified" && (
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleCreateProject(inquiry)
-                  }
-                >
-                  Create Project
-                </button>
-              )}
-
-              {/* Delete inquiry */}
-              <button
-                type="button"
-                onClick={() =>
-                  handleDeleteInquiry(inquiry._id)
-                }
-              >
-                Delete Inquiry
-              </button>
-            </li>
-          ))}
+          {inquiry.status === "qualified" && (
+            <button
+              type="button"
+              onClick={() => handleCreateProject(inquiry)}
+              className="rounded-xl bg-[#D69A2D] px-4 py-2 font-medium text-white transition hover:bg-[#B8862B]"
+            >
+              Create Project
+            </button>
+          )}
+        </div>
+      </div>
+    </article>
+  ))}
+</div>
         </ul>
       )}
     </section>

@@ -110,44 +110,53 @@ const DashboardPage = () => {
       0
     );
 
-  const projectStageData = {
-    labels: ["Planning", "Development", "Review", "Complete"],
-    datasets: [
-      {
-        data: [
-          projects.filter((project) => project.stage === "planning").length,
-          projects.filter((project) => project.stage === "development").length,
-          projects.filter((project) => project.stage === "review").length,
-          projects.filter((project) => project.stage === "complete").length,
-        ],
-      },
-    ],
-  };
-
-  const inquiryStatusData = {
-    labels: ["New", "Discussion", "Qualified", "Closed"],
-    datasets: [
-      {
-        data: [
-          inquiries.filter((inquiry) => inquiry.status === "new").length,
-          inquiries.filter((inquiry) => inquiry.status === "discussion").length,
-          inquiries.filter((inquiry) => inquiry.status === "qualified").length,
-          inquiries.filter((inquiry) => inquiry.status === "closed").length,
-        ],
-      },
-    ],
-  };
-
-  const revenueData = {
-    labels: ["Potential / Pending", "Realized"],
-    datasets: [
-      {
-        label: "Estimated Revenue",
-        data: [potentialRevenue, realizedRevenue],
-      },
-    ],
-  };
-
+const projectStageData = {
+  labels: ["Planning", "Development", "Review", "Complete"],
+  datasets: [
+    {
+      data: [
+        projects.filter((project) => project.stage === "planning").length,
+        projects.filter((project) => project.stage === "development").length,
+        projects.filter((project) => project.stage === "review").length,
+        projects.filter((project) => project.stage === "complete").length,
+      ],
+      backgroundColor: ["#D69A2D", "#3F6F68", "#8C5E2A", "#122321"],
+      borderColor: "#FFF9F4",
+      borderWidth: 3,
+      hoverOffset: 10,
+    },
+  ],
+};
+const inquiryStatusData = {
+  labels: ["New", "Discussion", "Qualified", "Closed"],
+  datasets: [
+    {
+      data: [
+        inquiries.filter((inquiry) => inquiry.status === "new").length,
+        inquiries.filter((inquiry) => inquiry.status === "discussion").length,
+        inquiries.filter((inquiry) => inquiry.status === "qualified").length,
+        inquiries.filter((inquiry) => inquiry.status === "closed").length,
+      ],
+      backgroundColor: ["#D69A2D", "#3F6F68", "#C47A3A", "#122321"],
+      borderColor: "#FFF9F4",
+      borderWidth: 3,
+      hoverOffset: 10,
+    },
+  ],
+};
+const revenueData = {
+  labels: ["Potential / Pending", "Realized"],
+  datasets: [
+    {
+      label: "Estimated Revenue",
+      data: [potentialRevenue, realizedRevenue],
+      backgroundColor: ["#D69A2D", "#122321"],
+      borderColor: ["#B8862B", "#0F1C1B"],
+      borderWidth: 2,
+      borderRadius: 10,
+    },
+  ],
+};
   return (
     <section className="space-y-6">
       <div>
@@ -298,20 +307,48 @@ const DashboardPage = () => {
           </table>
         </div>
       </section>
+<div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+  <Link to="/admin/inquiries" className="block">
+    <DashboardChartCard title="Estimated Revenue Pipeline">
+      <Bar
+        data={revenueData}
+        options={{
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        }}
+      />
+    </DashboardChartCard>
+  </Link>
 
-      <div className="grid gap-6 xl:grid-cols-3">
-        <DashboardChartCard title="Estimated Revenue Pipeline">
-          <Bar data={revenueData} />
-        </DashboardChartCard>
+  <Link to="/admin/projects" className="block">
+    <DashboardChartCard title="Project Phases">
+      <Pie
+        data={projectStageData}
+        options={{
+          responsive: true,
+          maintainAspectRatio: false,
+        }}
+      />
+    </DashboardChartCard>
+  </Link>
 
-        <DashboardChartCard title="Project Phases">
-          <Pie data={projectStageData} />
-        </DashboardChartCard>
-
-        <DashboardChartCard title="Inquiry Statuses">
-          <Pie data={inquiryStatusData} />
-        </DashboardChartCard>
-      </div>
+  <Link to="/admin/inquiries" className="block">
+    <DashboardChartCard title="Inquiry Statuses">
+      <Pie
+        data={inquiryStatusData}
+        options={{
+          responsive: true,
+          maintainAspectRatio: false,
+        }}
+      />
+    </DashboardChartCard>
+  </Link>
+</div>
     </section>
   );
 };

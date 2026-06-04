@@ -8,12 +8,14 @@ const DashboardChartCard = ({
   children,
 }: DashboardChartCardProps) => {
   return (
-    <section className="rounded-2xl border border-[#D8C6B5] bg-[#FFF9F4] p-5 shadow-sm">
-      <h2 className="mb-4 text-xl font-bold text-[#122321]">
+    <section className="rounded-2xl border border-[#D8C6B5] bg-[#FFF9F4] p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+      <h2 className="mb-4 text-lg font-bold text-[#122321]">
         {title}
       </h2>
 
-      <div className="h-72">{children}</div>
+      <div className="h-56">
+        {children}
+      </div>
     </section>
   );
 };
