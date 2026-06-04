@@ -13,21 +13,21 @@ const InquiriesPage = () => {
     const [error, setError] = useState("");
 
     const handleStatusChange = async (
-    id: string,
-    status: Inquiry["status"]
-) => {
-    try {
-        const updatedInquiry = await updateInquiry(id, { status });
+        id: string,
+        status: Inquiry["status"]
+    ) => {
+        try {
+            const updatedInquiry = await updateInquiry(id, { status });
 
-        setInquiries((prevInquiries) =>
-            prevInquiries.map((inquiry) =>
-                inquiry._id === id ? updatedInquiry : inquiry
-            )
-        );
-    } catch {
-        setError("Unable to update inquiry status.");
-    }
-};
+            setInquiries((prevInquiries) =>
+                prevInquiries.map((inquiry) =>
+                    inquiry._id === id ? updatedInquiry : inquiry
+                )
+            );
+        } catch {
+            setError("Unable to update inquiry status.");
+        }
+    };
 
     // useEffect hook to fetch inquiries from the API when the component mounts. It calls the getInquiries service function, updates the state with the retrieved inquiries, and handles any errors that may occur during the fetch process.
     useEffect(() => {
@@ -76,12 +76,22 @@ const InquiriesPage = () => {
                                         inquiry._id,
                                         event.target.value as Inquiry["status"]
                                     )
+
                                 }
+
+
                             >
                                 <option value="new">New</option>
                                 <option value="discussion">Discussion</option>
                                 <option value="qualified">Qualified</option>
                                 <option value="closed">Closed</option>
+
+                                // If the inquiry status is "qualified", show a button to create a project from this inquiry. This allows the admin to easily convert qualified inquiries into active projects in the system.
+                                {inquiry.status === "qualified" && (
+                                    <button type="button">
+                                        Create Project
+                                    </button>
+                                )}
                             </select>
                         </li>
                     ))}
