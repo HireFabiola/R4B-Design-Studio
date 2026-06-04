@@ -85,14 +85,16 @@ const InquiriesPage = () => {
                                 <option value="discussion">Discussion</option>
                                 <option value="qualified">Qualified</option>
                                 <option value="closed">Closed</option>
-
-                                // If the inquiry status is "qualified", show a button to create a project from this inquiry. This allows the admin to easily convert qualified inquiries into active projects in the system.
-                                {inquiry.status === "qualified" && (
-                                    <button type="button">
-                                        Create Project
-                                    </button>
-                                )}
                             </select>
+
+                             {/* // If the inquiry status is "qualified", show a button to create a project from this inquiry. This allows the admin to easily convert qualified inquiries into active projects in the system. */}
+                            {inquiry.status === "qualified" && (
+                                <button type="button"
+                                    onClick={() => handleCreateProject(inquiry)}
+                                >
+                                    Create Project
+                                </button>
+                            )}
                         </li>
                     ))}
                 </ul>
