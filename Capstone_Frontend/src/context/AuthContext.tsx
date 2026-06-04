@@ -20,6 +20,9 @@ export const AuthProvider = ({
     const [token, setToken] =
         useState<string | null>(null);
 
+    const [isAuthLoading, setIsAuthLoading] = useState(true);
+
+
     //  On component mount, check localStorage for existing token and user data to maintain authentication state across page refreshes
     useEffect(() => {
         const savedToken =
@@ -63,7 +66,7 @@ export const AuthProvider = ({
     };
 
 
-// Provide the authentication state and functions to the rest of the app through the AuthContext.Provider
+    // Provide the authentication state and functions to the rest of the app through the AuthContext.Provider
     return (
         <AuthContext.Provider
             value={{
@@ -71,6 +74,7 @@ export const AuthProvider = ({
                 token,
                 login,
                 logout,
+                isAuthLoading,
             }}
         >
             {children}
