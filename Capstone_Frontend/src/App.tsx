@@ -33,6 +33,7 @@ function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/work" element={<WorkPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/admin/login" element={<AdminLoginPage />}/>
         </Route>
 
         {/* Admin Website routes */}

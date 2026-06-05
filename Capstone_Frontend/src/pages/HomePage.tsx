@@ -1,5 +1,5 @@
 import "../App.css";
-
+import { Link } from "react-router-dom"
 
 type FeatureProps = {
   icon: string;
@@ -129,7 +129,7 @@ export default function HomePage() {
           <p>✉ hello@r4bdesignstudio.com</p>
           <p>☎ (864) 555-0148</p>
           <p>⌖ Greenville, SC</p>
-          <a className="login-link" href="/login">🔒 Studio Login</a>
+          <Link to="/admin/login" className="login-link">🔒 Admin Login</Link>
         </div>
       </footer>
     </main>
