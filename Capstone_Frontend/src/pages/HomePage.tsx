@@ -103,9 +103,7 @@ export default function HomePage() {
 
                     <img
                         src="/images/r4b-logo-dark.png"
-                        alt="R4B Design Studio"
-                        className="mb-4 w-24"
-                    />
+                        alt="R4B Design Studio" />
 
                     <p className="mb-4 text-white">
                         @r4bdesignstudio
