@@ -51,7 +51,12 @@
   min-height: 760px;
   padding: 2rem 4rem;
   overflow: hidden;
-  background: linear-gradient(90deg, #f4e5da 0%, #f6e8dd 45%, #efd8c9 100%);
+  background: linear-gradient(
+    90deg,
+    #f4e5da 0%,
+    #f6e8dd 45%,
+    #efd8c9 100%
+  );
 }
 
 .hero-bg-image {
@@ -59,10 +64,11 @@
   right: 0;
   bottom: 0;
   width: 66%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
   z-index: 1;
 }
-
 .navbar {
   position: relative;
   z-index: 3;
