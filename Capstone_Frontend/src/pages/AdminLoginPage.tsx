@@ -52,11 +52,6 @@ const AdminLoginPage = () => {
     <main className="admin-login-page">
       <div className="admin-login-card">
         <div className="admin-login-header">
-          <img
-            src="/images/r4b-logo.png"
-            alt="R4B Design Studio"
-          />
-
           <p>ADMIN PORTAL</p>
 
           <h1>Welcome Back</h1>
