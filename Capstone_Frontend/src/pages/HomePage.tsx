@@ -2,6 +2,7 @@ import "../App.css";
 import { Link } from "react-router-dom"
 import "bootstrap-icons/font/bootstrap-icons.css";
 import DesignAssistant from "../components/DesignAssistant";
+import logo from "../assets/r4b-logo.png";
 
 type FeatureProps = {
     icon: string;
@@ -37,7 +38,7 @@ export default function HomePage() {
 
                 <nav className="navbar">
                     <div className="brand">
-                        <img src="../../src/assets/r4b-logo.png" alt="R4B Design Studio" />
+                        <img src={logo} alt="R4B Design Studio" />
                         <div className="brand-divider"></div>
                         <p>
                             <span>DESIGN</span> STUDIO
