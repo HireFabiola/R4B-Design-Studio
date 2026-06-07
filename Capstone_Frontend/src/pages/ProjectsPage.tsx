@@ -35,6 +35,7 @@ const ProjectsPage = () => {
     formData,
     handleChange,
     resetForm,
+    setFormData,
   } = useForm({
     title: "",
     clientName: "",
@@ -45,6 +46,7 @@ const ProjectsPage = () => {
 
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [editingProjectId, setEditingProjectId] = useState<string | null>(null);
 
   const {
     formData: taskFormData,
@@ -64,11 +66,37 @@ const ProjectsPage = () => {
     event.preventDefault();
 
     try {
-      await addItem(formData);
-      resetForm();
+      if (editingProjectId) {
+        // Update existing project
+        await editItem(editingProjectId, formData);
+        resetForm();
+        setEditingProjectId(null);
+      } else {
+        // Create new project
+        const newProject = await addItem(formData);
+        // Switch to edit mode for the newly created project
+        setEditingProjectId(newProject._id);
+      }
     } catch {
       setError("Unable to create project.");
     }
+  };
+
+  const handleEditProject = (project: Project) => {
+    setEditingProjectId(project._id);
+    // Populate form with project data
+    setFormData({
+      title: project.title,
+      clientName: project.clientName,
+      clientEmail: project.clientEmail,
+      description: project.description,
+      stage: project.stage,
+    });
+  };
+
+  const handleCancelEdit = () => {
+    setEditingProjectId(null);
+    resetForm();
   };
 
   const handleStageChange = async (
@@ -143,7 +171,7 @@ const ProjectsPage = () => {
         className="rounded-2xl border border-[#D8C6B5] bg-[#FFF9F4] p-5 shadow-sm"
       >
         <h2 className="mb-4 text-xl font-bold text-[#122321]">
-          Create New Project
+          {editingProjectId ? "Edit Project" : "Create New Project"}
         </h2>
 
         <div className="grid gap-4 md:grid-cols-2">
@@ -198,12 +226,24 @@ const ProjectsPage = () => {
           />
         </div>
 
-        <button
-          type="submit"
-          className="mt-4 rounded-xl bg-[#D69A2D] px-5 py-2 font-medium text-white transition hover:bg-[#B8862B]"
-        >
-          Create Project
-        </button>
+        <div className="mt-4 flex gap-3">
+          <button
+            type="submit"
+            className="rounded-xl bg-[#D69A2D] px-5 py-2 font-medium text-white transition hover:bg-[#B8862B]"
+          >
+            {editingProjectId ? "Save Changes" : "Create Project"}
+          </button>
+
+          {editingProjectId && (
+            <button
+              type="button"
+              onClick={handleCancelEdit}
+              className="rounded-xl border border-[#D8C6B5] px-5 py-2 font-medium text-[#122321] transition hover:bg-[#122321]/10"
+            >
+              Cancel
+            </button>
+          )}
+        </div>
       </form>
 
       {projects.length === 0 ? (
@@ -257,6 +297,14 @@ const ProjectsPage = () => {
                   <option value="review">Review</option>
                   <option value="complete">Complete</option>
                 </select>
+
+                <button
+                  type="button"
+                  onClick={() => handleEditProject(project)}
+                  className="rounded-xl bg-[#D69A2D] px-4 py-2 font-medium text-white transition hover:bg-[#B8862B]"
+                >
+                  Edit Project
+                </button>
 
                 <button
                   type="button"

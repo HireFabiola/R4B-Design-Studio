@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import apiClient from "../api/apiClient";
 import { useAuth } from "../context/AuthContext";
 import "../App.css";
@@ -103,6 +103,13 @@ const AdminLoginPage = () => {
               ? "SIGNING IN..."
               : "SIGN IN →"}
           </button>
+
+          <p className="register-link-text">
+            New user? Please{" "}
+            <Link to="/auth/register" className="register-link">
+              register
+            </Link>
+          </p>
         </form>
       </div>
     </main>

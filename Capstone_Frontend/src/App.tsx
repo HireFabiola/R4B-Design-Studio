@@ -16,6 +16,7 @@ import ContactPage from "./pages/ContactPage";
 // Importing page components for the admin dashboard  
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminLoginPage from "./pages/AdminLoginPage";
+import AdminRegisterPage from "./pages/AdminRegisterPage";
 import DashboardPage from "./pages/DashboardPage";
 import InquiriesPage from "./pages/InquiriesPage";
 import ProjectsPage from "./pages/ProjectsPage";
@@ -25,20 +26,28 @@ import TasksPage from "./pages/TasksPage";
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* Public Website routes */}
-        <Route element={<PublicLayout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/work" element={<WorkPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/admin/login" element={<AdminLoginPage />}/>
-        </Route>
+      <div className="app-frame">
+        <div className="app-frame-inner">
+          <Routes>
+            {/* Public Website routes */}
+            <Route element={<PublicLayout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/work" element={<WorkPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/auth/login" element={<AdminLoginPage />} />
+              <Route path="/auth/register" element={<AdminRegisterPage />} />
+              <Route path="/admin/login" element={<AdminLoginPage />} />
+              <Route path="/admin/register" element={<AdminRegisterPage />} />
+            </Route>
 
         {/* Admin Website routes */}
         <Route element={<AdminLayout />}>
+          <Route path="/auth/login" element={<AdminLoginPage />} />
+          <Route path="/auth/register" element={<AdminRegisterPage />} />
           <Route path="/admin/login" element={<AdminLoginPage />} />
+          <Route path="/admin/register" element={<AdminRegisterPage />} />
           <Route path="/admin/dashboard" element={
             <ProtectedRoute>
               <DashboardPage />
@@ -61,7 +70,9 @@ function App() {
           } />
         </Route>
       </Routes>
-    </BrowserRouter>
+        </div>
+      </div>
+      </BrowserRouter>
   );
 }
 
