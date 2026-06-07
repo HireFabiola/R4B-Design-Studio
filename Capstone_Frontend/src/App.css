@@ -1,3 +1,11 @@
+/* =====================================================
+   GLOBAL BASE
+===================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
 html,
 body,
 #root {
@@ -11,9 +19,26 @@ body {
   background: #eef0f2;
 }
 
-#root {
-  min-height: 100vh;
+img {
+  max-width: 100%;
+  height: auto;
 }
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+main {
+  overflow-x: hidden;
+}
+
+
+/* =====================================================
+   ADMIN DASHBOARD LAYOUT
+===================================================== */
 
 .admin-shell {
   display: flex;
@@ -56,6 +81,11 @@ body {
   padding: 2rem;
 }
 
+
+/* =====================================================
+   HOME PAGE
+===================================================== */
+
 .home-page {
   min-height: 100vh;
   background: #f4e5da;
@@ -74,6 +104,11 @@ body {
   background-repeat: no-repeat;
 }
 
+
+/* =====================================================
+   HOME PAGE - NAVIGATION
+===================================================== */
+
 .navbar {
   position: sticky;
   top: 0;
@@ -86,34 +121,10 @@ body {
   backdrop-filter: none;
 }
 
-@media (max-width: 1180px) {
-  .hero {
-    min-height: 90vh;
-    padding: 1rem 2rem 1.5rem;
-  }
-
-  .navbar {
-    padding: 0.5rem 0;
-  }
-}
-
-@media (max-width: 932px) {
-  .hero {
-    min-height: 85vh;
-    padding: 1.5rem;
-  }
-
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-}
-
 .brand {
   display: flex;
   align-items: center;
-  gap: .75rem;
+  gap: 0.75rem;
 }
 
 .brand img {
@@ -140,16 +151,21 @@ body {
 .nav-links {
   display: flex;
   gap: 3rem;
-
   position: relative;
   top: -18px;
 }
 
 .nav-links a {
-  color: #111;
+  color: #102022;
   text-decoration: none;
   font-weight: 600;
   padding-bottom: 0.7rem;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.nav-links a:hover {
+  color: #a56f08;
+  transform: translateY(-2px);
 }
 
 .nav-links .active {
@@ -161,12 +177,38 @@ body {
   display: none;
 }
 
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #102022;
+  border-radius: 999px;
+  transition: 0.25s ease;
+}
+
+.nav-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* =====================================================
+   HOME PAGE - HERO CONTENT
+===================================================== */
+
 .hero-content {
   position: relative;
   z-index: 2;
   width: 48%;
   max-width: 760px;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   padding-left: 1rem;
 }
 
@@ -175,6 +217,7 @@ body {
   font-size: clamp(4rem, 4.5vw, 5rem);
   font-weight: 500;
   line-height: 1.05;
+  margin: 0;
 }
 
 .gold-line {
@@ -196,11 +239,17 @@ body {
   margin-top: 1rem;
 }
 
-.hero-buttons button {
+.hero-buttons button,
+.primary-btn,
+.secondary-btn {
   border-radius: 8px;
   padding: 1.25rem 2rem;
   font-weight: 700;
   cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .primary-btn {
@@ -219,6 +268,11 @@ body {
   color: #a56f08;
   margin-right: 0.75rem;
 }
+
+
+/* =====================================================
+   HOME PAGE - FEATURE STRIP
+===================================================== */
 
 .feature-strip {
   position: relative;
@@ -266,6 +320,11 @@ body {
   line-height: 1.6;
 }
 
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
 .footer {
   display: grid;
   grid-template-columns: 1.6fr repeat(4, 1fr);
@@ -308,279 +367,91 @@ body {
   margin-top: 1.5rem;
 }
 
-@media (max-width: 1100px) {
-  .hero-bg-image {
-    opacity: 0.35;
-    width: 100%;
-  }
 
-  .hero-content {
-    max-width: 720px;
-  }
+/* =====================================================
+   CONTACT PAGE
+===================================================== */
 
-  .nav-links {
-    display: none;
-  }
-
-  .feature-strip,
-  .footer {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 700px) {
-
-  .hero {
-    min-height: auto;
-    padding: 1rem;
-    background-position: center center;
-  }
-
-  .navbar {
-    position: relative;
-    justify-content: center;
-    padding-top: 0.5rem;
-  }
-
-  .brand {
-    justify-content: center;
-    gap: 0.5rem;
-  }
-
-  .brand img {
-    width: 110px;
-  }
-
-  .brand-divider {
-    height: 50px;
-  }
-
-  .brand p {
-    font-size: 0.9rem;
-    letter-spacing: 0.2rem;
-  }
-
-  /* Hamburger */
-
- .nav-toggle {
-  display: flex;
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  z-index: 100;
-
-  width: 44px;
-  height: 44px;
-
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-
-  background: rgba(255, 247, 240, 0.95);
-  border: 1px solid #a56f08;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.nav-toggle span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: #102022;
-  border-radius: 999px;
-}
-
-.nav-toggle span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: #102022;
-  border-radius: 999px;
-  transition: 0.25s ease;
-}
-
-/* Hamburger transforms into X when menu is open */
-
-.nav-toggle.open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.nav-toggle.open span:nth-child(2) {
-  opacity: 0;
-}
-
-.nav-toggle.open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(244, 229, 218, 0.97) 0%,
-    rgba(244, 229, 218, 0.92) 35%,
-    rgba(244, 229, 218, 0.84) 65%,
-    rgba(244, 229, 218, 0.76) 100%
-  );
-  z-index: 2;
-}
-
-  .nav-links {
-    display: none;
-  }
-
-  .nav-links.open {
-    display: flex;
-    flex-direction: column;
-
-    position: absolute;
-    top: 3.5rem;
-    right: 0.5rem;
-
-    width: 180px;
-
-    background: rgba(255, 247, 240, 0.97);
-
-    border-radius: 12px;
-
-    padding: 1rem;
-
-    gap: 0.75rem;
-
-    box-shadow: 0 10px 25px rgba(0,0,0,.15);
-  }
-
-  /* Hero Content */
-
-  .hero-content {
-    width: 100%;
-    max-width: 100%;
-
-    text-align: center;
-
-    padding-left: 0;
-
-    margin-top: 1rem;
-  }
-
-  .hero-content h1 {
-    font-size: clamp(2.5rem, 10vw, 3.5rem);
-  }
-
-  .gold-line {
-    margin: 1rem auto;
-  }
-
-  .hero-content p {
-    max-width: 100%;
-    margin: 0 auto;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .primary-btn,
-  .secondary-btn {
-    width: 100%;
-    max-width: 280px;
-  }
-
-  /* Feature Strip */
-
-  .feature-strip {
-    grid-template-columns: 1fr;
-    margin: 1rem;
-    padding: 1rem;
-  }
-
-  .feature-card {
-    border-right: none;
-    border-bottom: 1px solid #d8c6b5;
-
-    padding-bottom: 1rem;
-
-    justify-content: center;
-    text-align: center;
-  }
-
-  .feature-card:last-child {
-    border-bottom: none;
-  }
-
-  /* Footer */
-
-  .footer {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-brand,
-  .footer-column {
-    border-right: none;
-    text-align: center;
-  }
-}
 .contact-page {
+  min-height: 100vh;
   background: #f4e5da;
   color: #102022;
-  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
-.contact-hero {
-  padding: 7rem 4rem 3rem;
-  max-width: 900px;
+.contact-layout {
+  width: 100%;
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 3rem 4rem;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 2.5rem;
+  align-items: center;
 }
 
-.eyebrow {
+.contact-eyebrow {
   color: #a56f08;
   letter-spacing: 0.35rem;
   font-weight: 700;
+  margin-bottom: 1rem;
 }
 
-.contact-hero h1 {
+.contact-intro h1 {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(4rem, 5vw, 6rem);
+  font-size: clamp(3.8rem, 5vw, 5.4rem);
   font-weight: 500;
-  line-height: 1;
-  margin: 1rem 0;
+  line-height: 0.95;
+  margin: 0 0 1.25rem;
 }
 
-.contact-hero p {
-  font-size: 1.35rem;
+.contact-description {
+  font-size: 1.15rem;
   line-height: 1.6;
-  max-width: 700px;
+  max-width: 560px;
+  margin-bottom: 2rem;
 }
 
-.contact-section {
-  padding: 2rem 4rem 6rem;
+.contact-details-card {
+  background: rgba(255, 247, 240, 0.7);
+  border: 1px solid #d8c6b5;
+  border-radius: 20px;
+  padding: 1.5rem;
+  max-width: 420px;
 }
 
-.contact-form {
+.contact-details-card h2 {
+  color: #a56f08;
+  font-size: 1.1rem;
+  margin-top: 0;
+}
+
+.contact-details-card p {
+  margin: 0.5rem 0;
+}
+
+.contact-form,
+.compact-contact-form {
   background: rgba(255, 247, 240, 0.9);
   border: 1px solid #d8c6b5;
   border-radius: 24px;
-  padding: 3rem;
-  max-width: 950px;
+  padding: 2rem;
   box-shadow: 0 20px 45px rgba(16, 32, 34, 0.08);
 }
 
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .contact-form label {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.45rem;
   font-weight: 700;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1rem;
 }
 
 .contact-form input,
@@ -588,10 +459,14 @@ body {
 .contact-form textarea {
   border: 1px solid #d8c6b5;
   border-radius: 10px;
-  padding: 1rem;
+  padding: 0.85rem;
   font: inherit;
   background: #fffaf5;
   color: #102022;
+}
+
+.contact-form textarea {
+  resize: none;
 }
 
 .contact-form button {
@@ -599,62 +474,75 @@ body {
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 1.1rem 2rem;
+  padding: 1rem 1.7rem;
   font-weight: 700;
   cursor: pointer;
 }
 
-.success-message {
-  margin-top: 1rem;
-  color: #a56f08;
-  font-weight: 700;
+.contact-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
-@media (max-width: 700px) {
 
-  .contact-hero,
-  .contact-section {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
+/* =====================================================
+   CONTACT PAGE - SUCCESS MODAL
+===================================================== */
 
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-form {
-    padding: 2rem;
-  }
+.thank-you-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(16, 32, 34, 0.55);
+  display: grid;
+  place-items: center;
+  z-index: 999;
 }
 
-.nav-links a {
-  color: #102022;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.25s ease, transform 0.25s ease;
+.thank-you-modal {
+  position: relative;
+  max-width: 460px;
+  background: #fff7f0;
+  border: 1px solid #d8c6b5;
+  border-radius: 24px;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(16, 32, 34, 0.25);
 }
 
-.nav-links a:hover {
-  color: #a56f08;
-  transform: translateY(-2px);
+.thank-you-modal h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 3rem;
+  font-weight: 500;
+  margin: 0 0 1rem;
 }
 
-/* ==========================
-   ADMIN LOGIN PAGE
-========================== */
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent !important;
+  color: #102022 !important;
+  font-size: 1.5rem;
+  padding: 0 !important;
+}
+
+
+/* =====================================================
+   ADMIN LOGIN / REGISTER PAGE
+===================================================== */
 
 .admin-login-page {
   min-height: 100vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   padding: 2rem;
 
   background:
-    linear-gradient(rgba(255, 247, 240, 0.75),
-      rgba(255, 247, 240, 0.75)),
+    linear-gradient(
+      rgba(255, 247, 240, 0.75),
+      rgba(255, 247, 240, 0.75)
+    ),
     url("/images/r4b-hero.png");
 
   background-size: cover;
@@ -664,19 +552,12 @@ body {
 .admin-login-card {
   width: 100%;
   max-width: 420px;
-
   background: rgba(255, 255, 255, 0.72);
-
   backdrop-filter: blur(10px);
-
   border: 1px solid #d8c6b5;
-
   border-radius: 24px;
-
   padding: 2.5rem;
-
-  box-shadow:
-    0 20px 40px rgba(16, 32, 34, 0.12);
+  box-shadow: 0 20px 40px rgba(16, 32, 34, 0.12);
 }
 
 .admin-login-header {
@@ -691,25 +572,16 @@ body {
 
 .admin-login-header p {
   color: #a56f08;
-
   font-size: 0.85rem;
-
   letter-spacing: 4px;
-
   margin-bottom: 0.5rem;
 }
 
 .admin-login-header h1 {
-  font-family:
-    "Cormorant Garamond",
-    serif;
-
+  font-family: "Cormorant Garamond", serif;
   font-size: 3.25rem;
-
   font-weight: 500;
-
   color: #102022;
-
   margin-bottom: 0.5rem;
 }
 
@@ -720,61 +592,45 @@ body {
 .admin-login-card form {
   display: flex;
   flex-direction: column;
-
   gap: 1.25rem;
 }
 
 .admin-login-card label {
   display: flex;
   flex-direction: column;
-
   gap: 0.5rem;
-
   font-weight: 600;
-
   color: #102022;
 }
 
 .admin-login-card input {
   padding: 0.95rem 1rem;
-
   border: 1px solid #d8c6b5;
-
   border-radius: 12px;
-
   font-size: 1rem;
 }
 
 .admin-login-card input:focus {
   outline: none;
-
   border-color: #a56f08;
-
-  box-shadow:
-    0 0 0 3px rgba(165, 111, 8, 0.15);
+  box-shadow: 0 0 0 3px rgba(165, 111, 8, 0.15);
 }
 
-.admin-login-card button {
+.admin-login-card button,
+.success-button {
   margin-top: 1rem;
-
   background: #102022;
-
   color: white;
-
   border: none;
-
   border-radius: 12px;
-
   padding: 1rem;
-
   font-weight: 600;
-
   cursor: pointer;
-
   transition: 0.25s;
 }
 
-.admin-login-card button:hover {
+.admin-login-card button:hover,
+.success-button:hover {
   background: #a56f08;
 }
 
@@ -814,21 +670,16 @@ body {
   text-decoration: none;
 }
 
-.success-button {
-  background: #d69a2d;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 1rem;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.25s;
+.success-button.secondary {
+  background: transparent;
+  color: #102022;
+  border: 1px solid #d8c6b5;
 }
 
-.success-button:hover {
-  background: #b8862b;
-}
+
+/* =====================================================
+   MODAL SHARED
+===================================================== */
 
 .modal-overlay {
   position: fixed;
@@ -847,7 +698,7 @@ body {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
   padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   text-align: center;
 }
 
@@ -858,15 +709,10 @@ body {
   margin-top: 1.25rem;
 }
 
-.success-button.secondary {
-  background: transparent;
-  color: #102022;
-  border: 1px solid #d8c6b5;
-}
 
-/* ==========================
+/* =====================================================
    PORTFOLIO PAGE
-========================== */
+===================================================== */
 
 .portfolio-page {
   background: #f4e5da;
@@ -875,53 +721,36 @@ body {
 
 .portfolio-hero {
   text-align: center;
-
   padding: 6rem 2rem 4rem;
-
   max-width: 900px;
-
   margin: 0 auto;
 }
 
 .portfolio-eyebrow {
   color: #a56f08;
-
   letter-spacing: 4px;
-
   font-size: 0.85rem;
-
   font-weight: 700;
 }
 
 .portfolio-hero h1 {
-  font-family:
-    "Cormorant Garamond",
-    serif;
-
+  font-family: "Cormorant Garamond", serif;
   font-size: clamp(4rem, 5vw, 6rem);
-
   font-weight: 500;
-
   line-height: 1;
-
   color: #102022;
-
   margin: 1rem 0;
 }
 
 .portfolio-hero p {
   font-size: 1.2rem;
-
   color: #4d4d4d;
-
   line-height: 1.6;
 }
 
 .portfolio-grid {
   max-width: 1400px;
-
   margin: 0 auto;
-
   padding: 0 3rem 5rem;
 
   display: grid;
@@ -934,11 +763,8 @@ body {
 
 .portfolio-card {
   background: rgba(255, 250, 245, 0.92);
-
   border: 1px solid #d8c6b5;
-
   border-radius: 24px;
-
   overflow: hidden;
 
   transition: 0.3s ease;
@@ -953,9 +779,7 @@ body {
 
 .portfolio-card img {
   width: 100%;
-
   height: 260px;
-
   object-fit: cover;
 }
 
@@ -965,65 +789,52 @@ body {
 
 .portfolio-content span {
   color: #a56f08;
-
   font-size: 0.8rem;
-
   letter-spacing: 2px;
-
   font-weight: 700;
 }
 
 .portfolio-content h2 {
   margin: 0.75rem 0;
-
   color: #102022;
 }
 
 .portfolio-content p {
   color: #5f5f5f;
-
   line-height: 1.6;
 }
 
 .portfolio-tags {
   display: flex;
-
   flex-wrap: wrap;
-
   gap: 0.5rem;
-
   margin-top: 1.25rem;
 }
 
 .portfolio-tag {
   padding: 0.5rem 0.85rem;
-
   border-radius: 999px;
-
   background: rgba(165, 111, 8, 0.1);
-
   color: #a56f08;
-
   font-size: 0.8rem;
-
   font-weight: 600;
 }
 
 .portfolio-link {
   display: inline-block;
-
   margin-top: 1.5rem;
-
   text-decoration: none;
-
   color: #102022;
-
   font-weight: 700;
 }
 
 .portfolio-link:hover {
   color: #a56f08;
 }
+
+/* =====================================================
+   ASK FAB ASSISTANT
+===================================================== */
 
 .design-assistant {
   position: fixed;
@@ -1033,14 +844,28 @@ body {
 }
 
 .assistant-toggle {
-  background: #102022;
-  color: white;
+  background: transparent;
   border: none;
-  border-radius: 999px;
-  padding: 0.9rem 1.4rem;
-  font-weight: 700;
+  padding: 0;
   cursor: pointer;
+}
+
+.fab-avatar {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  border-radius: 50%;
+  background: #102022;
+  border: 3px solid #c98908;
   box-shadow: 0 12px 30px rgba(16, 32, 34, 0.25);
+}
+
+.fab-avatar:hover {
+  transform: translateY(-3px);
+  transition: all 0.25s ease;
 }
 
 .assistant-window {
@@ -1112,192 +937,225 @@ body {
   color: white;
 }
 
-.fab-avatar {
-  width: 70px;
-  height: 70px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 2.2rem;
-
-  border-radius: 50%;
-
-  background: #102022;
-
-  border: 3px solid #c98908;
-
-  box-shadow: 0 12px 30px rgba(16, 32, 34, 0.25);
-}
-
-.assistant-toggle {
-  background: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-
-.fab-avatar:hover {
-  transform: translateY(-3px);
-  transition: all 0.25s ease;
-}
-
-/* ==========================
-   CONTACT PAGE FIX
-========================== */
-
-.contact-page {
-  min-height: 100vh;
-  background: #f4e5da;
-  color: #102022;
-  display: flex;
-  align-items: center;
-}
-
-.contact-layout {
-  width: 100%;
-  max-width: 1350px;
-  margin: 0 auto;
-  padding: 3rem 4rem;
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 2.5rem;
-  align-items: center;
-}
-
-.contact-eyebrow {
-  color: #a56f08;
-  letter-spacing: 0.35rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.contact-intro h1 {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(3.8rem, 5vw, 5.4rem);
-  font-weight: 500;
-  line-height: 0.95;
-  margin: 0 0 1.25rem;
-}
-
-.contact-description {
-  font-size: 1.15rem;
-  line-height: 1.6;
-  max-width: 560px;
-  margin-bottom: 2rem;
-}
-
-.contact-details-card {
-  background: rgba(255, 247, 240, 0.7);
-  border: 1px solid #d8c6b5;
-  border-radius: 20px;
-  padding: 1.5rem;
-  max-width: 420px;
-}
-
-.contact-details-card h2 {
-  color: #a56f08;
-  font-size: 1.1rem;
-  margin-top: 0;
-}
-
-.contact-details-card p {
-  margin: 0.5rem 0;
-}
-
-.compact-contact-form {
-  background: rgba(255, 247, 240, 0.9);
-  border: 1px solid #d8c6b5;
-  border-radius: 24px;
-  padding: 2rem;
-  box-shadow: 0 20px 45px rgba(16, 32, 34, 0.08);
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-}
-
-.contact-form label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
-  border: 1px solid #d8c6b5;
-  border-radius: 10px;
-  padding: 0.85rem;
-  font: inherit;
-  background: #fffaf5;
-  color: #102022;
-}
-
-.contact-form textarea {
-  resize: none;
-}
-
-.contact-form button {
-  background: #102022;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 1rem 1.7rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.contact-form button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-/* Contact success modal */
-
-.thank-you-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(16, 32, 34, 0.55);
-  display: grid;
-  place-items: center;
-  z-index: 999;
-}
-
-.thank-you-modal {
-  position: relative;
-  max-width: 460px;
-  background: #fff7f0;
-  border: 1px solid #d8c6b5;
-  border-radius: 24px;
-  padding: 2.5rem;
-  text-align: center;
-  box-shadow: 0 25px 60px rgba(16, 32, 34, 0.25);
-}
-
-.thank-you-modal h2 {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 3rem;
-  font-weight: 500;
-  margin: 0 0 1rem;
-}
-
-.modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: transparent !important;
-  color: #102022 !important;
-  font-size: 1.5rem;
-  padding: 0 !important;
-}
+/* =====================================================
+   PORTFOLIO TABLET
+===================================================== */
 
 @media (max-width: 900px) {
+  .portfolio-grid {
+    grid-template-columns: minmax(0, 1fr);
+
+    padding:
+      0 1.25rem 4rem;
+  }
+
+  .portfolio-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .portfolio-card img {
+    height: 220px;
+  }
+}
+
+/* =====================================================
+   TABLET RESPONSIVE
+===================================================== */
+
+@media (max-width: 1180px) {
+  .hero {
+    min-height: 90vh;
+    padding: 1rem 2rem 1.5rem;
+  }
+
+  .navbar {
+    padding: 0.5rem 0;
+  }
+}
+
+@media (max-width: 1100px) {
+  .hero-content {
+    max-width: 720px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .feature-strip,
+  .footer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 932px) {
+  .hero {
+    min-height: 85vh;
+    padding: 1.5rem;
+  }
+}
+
+
+/* =====================================================
+   MOBILE RESPONSIVE
+===================================================== */
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: auto;
+    padding: 1rem;
+    background-attachment: scroll;
+    background-position: center center;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(244, 229, 218, 0.88);
+    z-index: 2;
+  }
+
+  .navbar {
+    position: relative;
+    z-index: 3;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0.5rem;
+  }
+
+  .brand {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .brand img {
+    width: 110px !important;
+  }
+
+  .brand-divider {
+    height: 50px;
+    margin: 0 0.25rem;
+  }
+
+  .brand p {
+    font-size: 0.9rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .nav-toggle {
+    display: flex;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 100;
+    width: 44px;
+    height: 44px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255, 247, 240, 0.95);
+    border: 1px solid #a56f08;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 3.75rem;
+    right: 0.75rem;
+    z-index: 90;
+    width: 180px;
+    background: rgba(255, 247, 240, 0.97);
+    border-radius: 12px;
+    padding: 1rem;
+    gap: 0.75rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .nav-links.open a {
+    padding-bottom: 0;
+    text-align: right;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    padding-left: 0;
+    margin-top: 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
+  }
+
+  .gold-line {
+    margin: 1rem auto;
+  }
+
+  .hero-content p {
+    max-width: 100%;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    line-height: 1.45;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .feature-strip {
+    grid-template-columns: 1fr;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 18px;
+  }
+
+  .feature-card {
+    border-right: none;
+    border-bottom: 1px solid #d8c6b5;
+    padding: 0 0 1rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .feature-card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .footer {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+
+  .footer-brand,
+  .footer-column {
+    border-right: none;
+    padding-right: 0;
+  }
+
   .contact-page {
     align-items: flex-start;
   }
@@ -1309,5 +1167,83 @@ body {
 
   .form-row {
     grid-template-columns: 1fr;
+  }
+
+  .contact-form,
+  .compact-contact-form {
+    padding: 2rem;
+  }
+
+  .admin-login-card {
+    max-width: 100%;
+    padding: 2rem;
+  }
+
+    .portfolio-page {
+    width: 100%;
+  }
+
+  .portfolio-hero {
+    padding: 3rem 1.25rem 2rem;
+    max-width: 100%;
+  }
+
+  .portfolio-hero h1 {
+    font-size: clamp(3rem, 14vw, 4rem);
+    line-height: 0.95;
+  }
+
+  .portfolio-hero p {
+    font-size: 1rem;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0 1rem 3rem;
+  }
+
+  .portfolio-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .portfolio-card img {
+    height: 190px;
+  }
+
+  .portfolio-content {
+    padding: 1.25rem;
+  }
+
+  .portfolio-tags {
+    justify-content: center;
+  }
+
+  .assistant-window {
+    width: calc(100vw - 2rem);
+  }
+}
+
+@media (max-width: 900px) {
+  .portfolio-grid {
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0 1rem 3rem;
+  }
+
+  .portfolio-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .portfolio-hero {
+    padding: 3rem 1.25rem 2rem;
+  }
+
+  .portfolio-content {
+    padding: 1.25rem;
   }
 }
