@@ -65,7 +65,7 @@ body {
 
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 700px;
   padding: 1.2rem 4rem 2rem;
   overflow: hidden;
   background-attachment: fixed;
@@ -113,7 +113,7 @@ body {
 .brand {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: .75rem;
 }
 
 .brand img {
@@ -124,6 +124,7 @@ body {
   width: 1px;
   height: 70px;
   background: #a56f08;
+  margin: 0 0.5rem;
 }
 
 .brand p {
@@ -139,6 +140,9 @@ body {
 .nav-links {
   display: flex;
   gap: 3rem;
+
+  position: relative;
+  top: -18px;
 }
 
 .nav-links a {
@@ -156,10 +160,10 @@ body {
 .hero-content {
   position: relative;
   z-index: 2;
-  width: 58%;
-  max-width: 950px;
-  margin-top: 4rem;
-  padding-left: 2rem;
+  width: 48%;
+  max-width: 760px;
+  margin-top: .5rem;
+  padding-left: 1rem;
 }
 
 .hero-content h1 {
@@ -185,7 +189,7 @@ body {
 .hero-buttons {
   display: flex;
   gap: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .hero-buttons button {
@@ -215,14 +219,14 @@ body {
 .feature-strip {
   position: relative;
   z-index: 4;
-  margin: -95px 3rem 0;
-  padding: 2rem;
+  margin: 30px 3rem 0;
+  padding: 1.5rem 2rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   background: rgba(255, 247, 240, 0.82);
   backdrop-filter: blur(10px);
-  border-radius: 24px 24px 0 0;
+  border-radius: 22px 22px 0 0;
 }
 
 .feature-card {
@@ -323,7 +327,7 @@ body {
 @media (max-width: 700px) {
   .hero {
     position: relative;
-    min-height: 760px;
+    min-height: 700px;
     padding: 2rem 4rem;
     overflow: hidden;
     background-size: cover;
