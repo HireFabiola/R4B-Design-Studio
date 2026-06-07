@@ -26,21 +26,19 @@ import TasksPage from "./pages/TasksPage";
 function App() {
   return (
     <BrowserRouter>
-      <div className="app-frame">
-        <div className="app-frame-inner">
-          <Routes>
-            {/* Public Website routes */}
-            <Route element={<PublicLayout />}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/work" element={<WorkPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/auth/login" element={<AdminLoginPage />} />
-              <Route path="/auth/register" element={<AdminRegisterPage />} />
-              <Route path="/admin/login" element={<AdminLoginPage />} />
-              <Route path="/admin/register" element={<AdminRegisterPage />} />
-            </Route>
+      <Routes>
+        {/* Public Website routes */}
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/work" element={<WorkPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/auth/login" element={<AdminLoginPage />} />
+          <Route path="/auth/register" element={<AdminRegisterPage />} />
+          <Route path="/admin/login" element={<AdminLoginPage />} />
+          <Route path="/admin/register" element={<AdminRegisterPage />} />
+        </Route>
 
         {/* Admin Website routes */}
         <Route element={<AdminLayout />}>
@@ -70,9 +68,7 @@ function App() {
           } />
         </Route>
       </Routes>
-        </div>
-      </div>
-      </BrowserRouter>
+    </BrowserRouter>
   );
 }
 
