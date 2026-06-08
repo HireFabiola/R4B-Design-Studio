@@ -41,7 +41,7 @@ export default function HomePage() {
 
                 <nav className="navbar">
                     <div className="brand">
-                     <img src="/images/r4b-logo.png" alt="R4B Design Studio" />
+                        <img src="/images/r4b-logo.png" alt="R4B Design Studio" />
                         <div className="brand-divider"></div>
                         <p>
                             <span>DESIGN</span> STUDIO
@@ -76,6 +76,11 @@ export default function HomePage() {
                         Thoughtful design, practical systems, and digital tools that help
                         you work smarter, serve clients better, and grow sustainably.
                     </p>
+                    <img
+                        src="/images/r4b-hero.png"
+                        alt="R4B Design Studio"
+                        className="hero-mobile-image"
+                    />
 
                     <div className="hero-buttons">
                         <button className="primary-btn"><Link to="/contact">LET’S BUILD TOGETHER →</Link></button>
@@ -163,9 +168,9 @@ export default function HomePage() {
                     <p>⌖ Greenville, SC</p>
                     <Link to="/admin/login" className="login-link">🔒 Admin Login</Link>
                 </div>
-                
+
             </footer>
-           
+
         </main>
     );
 }
