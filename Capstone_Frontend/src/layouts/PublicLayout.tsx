@@ -2,15 +2,9 @@ import { Outlet } from "react-router-dom";
 
 const PublicLayout = () => {
   return (
-    <>
-     
-
-      <main>
-        <Outlet />
-      </main>
-
-      
-    </>
+    <main className="public-layout-main">
+      <Outlet />
+    </main>
   );
 };
 

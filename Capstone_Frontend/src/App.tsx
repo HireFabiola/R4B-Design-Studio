@@ -10,7 +10,7 @@ import AdminLayout from "./layouts/AdminLayout";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ServicesPage from "./pages/ServicesPage";
-import WorkPage from "./pages/WorkPage";
+import PortfolioPage from "./pages/PortfolioPage";
 import ContactPage from "./pages/ContactPage";
 
 // Importing page components for the admin dashboard  
@@ -32,7 +32,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
-          <Route path="/work" element={<WorkPage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/auth/login" element={<AdminLoginPage />} />
           <Route path="/auth/register" element={<AdminRegisterPage />} />

@@ -1,6 +1,12 @@
 /* =====================================================
    GLOBAL BASE
 ===================================================== */
+.public-layout-main {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
 
 * {
   box-sizing: border-box;
@@ -35,6 +41,11 @@ main {
   overflow-x: hidden;
 }
 
+main:not(.public-layout-main) {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
 
 /* =====================================================
    ADMIN DASHBOARD LAYOUT
@@ -710,10 +721,10 @@ main {
 }
 
 
-/* =====================================================
+ /*=====================================================
    PORTFOLIO PAGE
 ===================================================== */
-
+/* 
 .portfolio-page {
   background: #f4e5da;
   min-height: 100vh;
@@ -830,7 +841,7 @@ main {
 
 .portfolio-link:hover {
   color: #a56f08;
-}
+} */ */
 
 /* =====================================================
    ASK FAB ASSISTANT
