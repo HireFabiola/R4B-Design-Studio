@@ -2,74 +2,87 @@
 
 export const phases = [
   {
-    phase: "PHASE 01",
+    phase: "Phase 01",
     title: "Professional Workflow",
-    description:
-      "Mastered version control workflows and collaboration best practices.",
+    description: "Version control, GitHub workflows, and developer setup.",
   },
   {
-    phase: "PHASE 02",
-    title: "Web Foundations",
-    description:
-      "Built responsive and accessible web interfaces with semantic HTML and modern CSS.",
+    phase: "Phase 02",
+    title: "Web Foundations & Design",
+    description: "HTML, CSS, responsive layouts, and foundational UI design.",
   },
   {
-    phase: "PHASE 03",
-    title: "Design & User Experience",
-    description:
-      "Translated design concepts into responsive, user-friendly interfaces.",
+    phase: "Phase 03",
+    title: "JavaScript & TypeScript",
+    description: "Core programming, DOM interaction, typed development, and frontend logic.",
   },
   {
-    phase: "PHASE 04",
-    title: "JavaScript Foundations",
-    description:
-      "Strengthened core programming skills and problem-solving abilities.",
+    phase: "Phase 04",
+    title: "React Development",
+    description: "Component-based interfaces, hooks, routing, and advanced React patterns.",
   },
   {
-    phase: "PHASE 05",
-    title: "Interactive Web Applications",
-    description:
-      "Brought static pages to life through DOM manipulation, events, and validation.",
+    phase: "Phase 05",
+    title: "Backend & Databases",
+    description: "Node.js, Express, MongoDB, middleware, APIs, and authentication.",
   },
   {
-    phase: "PHASE 06",
-    title: "Advanced JavaScript & TypeScript",
-    description:
-      "Built scalable applications using modern JavaScript, TypeScript, and OOP principles.",
+    phase: "Phase 06",
+    title: "Full-Stack MERN & Capstone",
+    description: "Unified interfaces, deployment, full-stack integration, and capstone delivery.",
   },
 ];
 
 export const skillCards = [
   {
     title: "Version Control",
+    image: "/images/journey/git.svg",
+    description:
+      "Built a foundation in professional developer workflows and source control.",
     tags: ["Git", "GitHub", "CLI", "Branching", "Merging"],
+    linkLabel: "View Details",
   },
   {
     title: "Responsive & Accessible Web Page",
-    tags: ["HTML5", "CSS3", "Accessibility", "Responsive"],
+    image: "/images/journey/responsive.svg",
+    description:
+      "Created responsive, accessible pages using semantic HTML and modern CSS.",
+    tags: ["HTML", "CSS", "Accessibility", "Responsive"],
+    linkLabel: "View Project",
   },
   {
-    title: "Bootstrap Labs",
-    tags: ["Bootstrap", "Components", "Layout"],
+    title: "JavaScript & TypeScript Foundations",
+    image: "/images/journey/js-ts.svg",
+    description:
+      "Strengthened core programming logic through DOM interaction and typed development.",
+    tags: ["JavaScript", "DOM", "Events", "TypeScript"],
+    linkLabel: "View Details",
   },
   {
-    title: "Figma Design",
-    tags: ["UI Design", "Prototyping", "UX"],
+    title: "React Application Development",
+    image: "/images/journey/react.svg",
+    description:
+      "Built component-based applications with state, routing, and API integration.",
+    tags: ["React", "Hooks", "React Router", "API"],
+    linkLabel: "View Project",
   },
   {
-    title: "Task Management App",
-    tags: ["JavaScript", "Functions", "Arrays", "Objects"],
+    title: "Backend & Database Development",
+    image: "/images/journey/backend.svg",
+    description:
+      "Developed server-side features using APIs, authentication, and database logic.",
+    tags: ["Node.js", "Express", "MongoDB", "JWT"],
+    linkLabel: "View Project",
   },
   {
-    title: "DOM Project",
-    tags: ["DOM", "Events", "Forms", "Validation"],
-  },
-  {
-    title: "TypeScript Project",
-    tags: ["TypeScript", "OOP", "Async/Await", "Promises"],
+    title: "Full-Stack MERN Capstone",
+    image: "/images/journey/mern.svg",
+    description:
+      "Unified frontend, backend, database, authentication, and deployment into a complete business platform.",
+    tags: ["MERN", "TypeScript", "Auth", "Deployment"],
+    linkLabel: "View Capstone",
   },
 ];
-
 export const projects = [
   {
     image: "/images/project-wanderlust.png",

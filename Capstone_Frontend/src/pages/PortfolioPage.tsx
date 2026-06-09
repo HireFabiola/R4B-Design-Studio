@@ -3,7 +3,7 @@ import "./PortfolioPage.css";
 import PortfolioHero from "../components/portfolio/PortfolioHero.tsx";
 import TimelineSummary from "../components/portfolio/TimelineSummary.tsx";
 import JourneySection from "../components/portfolio/JourneySection.tsx";
-import ProjectsSection from "../components/portfolio/JourneySection.tsx";
+import ProjectsSection from "../components/portfolio/ProjectsSection.tsx";
 import CapstoneSection from "../components/portfolio/CapstoneSection.tsx";
 import PortfolioFooterQuote from "../components/portfolio/PortfolioFooterQuote.tsx";
 
