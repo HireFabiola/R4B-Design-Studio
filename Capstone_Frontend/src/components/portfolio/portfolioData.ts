@@ -42,6 +42,7 @@ export const phases = [
 ];
 export const skillCards = [
   {
+    phase: "Phase 01",
     title: "Version Control & Collaboration",
     image: "/images/journey/git.svg",
     description:
@@ -63,6 +64,7 @@ export const skillCards = [
     ],
   },
   {
+      phase: "Phase 02",
     title: "Responsive & Accessible Web Page",
     image: "/images/journey/responsive.png",
     visualType: "screenshot",
@@ -80,6 +82,7 @@ export const skillCards = [
     ],
   },
  {
+    phase: "Phase 02",
   title: "Design Systems & CSS Frameworks",
   image: "/images/journey/design.png",
   visualType: "design",
@@ -100,6 +103,7 @@ export const skillCards = [
 },
 
   {
+      phase: "Phase 03",
     title: "JavaScript & TypeScript Foundations",
     image: "/images/journey/js-ts.svg",
     visualType: "icon",
@@ -118,6 +122,7 @@ export const skillCards = [
     ],
   },
   {
+      phase: "Phase 04",
     title: "React Application Development",
     image: "/images/journey/react.svg",
     description:
@@ -133,6 +138,7 @@ export const skillCards = [
     ],
   },
   {
+      phase: "Phase 05",
     title: "Backend & Database Development",
     image: "/images/journey/backend.svg",
     description:
@@ -148,6 +154,7 @@ export const skillCards = [
     ],
   },
   {
+      phase: "Phase 06",
     title: "Full-Stack MERN Capstone",
     image: "/images/journey/mern.svg",
     description:
