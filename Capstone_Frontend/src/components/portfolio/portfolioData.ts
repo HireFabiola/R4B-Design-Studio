@@ -79,10 +79,10 @@ export const skillCards = [
       "Designed with mobile-first thinking and responsive breakpoints.",
     ],
   },
-  {
+ {
   title: "Design Systems & CSS Frameworks",
   image: "/images/journey/design.png",
-  visualType: "banner",
+  visualType: "design",
 
   description:
     "Explored modern design-to-development workflows using Figma, Bootstrap, and Tailwind CSS to create responsive, user-focused interfaces.",

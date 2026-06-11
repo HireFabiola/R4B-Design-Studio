@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { phases, skillCards } from "./portfolioData";
 
+
 export default function JourneySection() {
   const [openCard, setOpenCard] = useState<string | null>(null);
+  const [comparisonOpen, setComparisonOpen] = useState(false);
 
   return (
     <section id="journey" className="journey-section">
@@ -45,43 +47,84 @@ export default function JourneySection() {
 
             return (
               <article
-                className={`skill-card ${skill.visualType === "banner"
-                    ? "banner-card"
-                    : skill.visualType === "screenshot"
-                      ? "screenshot-card"
-                      : "icon-card"
+                className={`skill-card ${skill.visualType === "design"
+                  ? "design-card"
+                  : skill.visualType === "screenshot"
+                    ? "screenshot-card"
+                    : "icon-card"
                   }`}
                 key={skill.title}
               >
-                <div
-                  className={`skill-thumbnail ${skill.visualType === "screenshot" ? "screenshot" : "icon"
-                    }`}
-                >
-                  <img src={skill.image} alt="" />
+                <div className="skill-card-main">
+                  <div
+                    className={`skill-thumbnail ${skill.visualType === "design"
+                      ? "design"
+                      : skill.visualType === "screenshot"
+                        ? "screenshot"
+                        : "icon"
+                      }`}
+                  >
+                    <img src={skill.image} alt="" />
+                  </div>
+
+                  <div className="skill-card-content">
+                    <h3>{skill.title}</h3>
+                    <p className="skill-description">{skill.description}</p>
+                  </div>
                 </div>
 
-                <div className="skill-card-content">
-                  <h3>{skill.title}</h3>
-
-                  <p className="skill-description">
-                    {skill.description}
-                  </p>
-
+                <div className="skill-card-highlights">
                   <small
                     className="skill-link"
-                    onClick={() =>
-                      setOpenCard(isOpen ? null : skill.title)
-                    }
+                    onClick={() => setOpenCard(isOpen ? null : skill.title)}
                   >
                     {skill.linkLabel} {isOpen ? "▴" : "▾"}
                   </small>
 
-                  {isOpen && skill.details && (
-                    <ul className="skill-details">
-                      {skill.details.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
+                  {isOpen && (
+                    <>
+                      {skill.details && (
+                        <ul className="skill-details">
+                          {skill.details.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      )}
+
+                      {skill.visualType === "design" && (
+                        <div className="implementation-proof">
+                          <p className="proof-title">
+                            Design-to-Development Example
+                          </p>
+
+                          <div className="proof-grid">
+                            <figure>
+                              <span>Figma Design</span>
+
+                              <img
+                                src="/images/journey/frontend-mentor-design.png"
+                                alt="Frontend Mentor Figma design"
+                              />
+                            </figure>
+
+                            <figure>
+                              <span>My Implementation</span>
+
+                              <img
+                                src="/images/journey/frontend-mentor-build.png"
+                                alt="Implemented webpage"
+                              />
+                            </figure>
+                          </div>
+                          <button
+                            className="comparison-link"
+                            onClick={() => setComparisonOpen(true)}
+                          >
+                            View Full Comparison ↗
+                          </button>
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
               </article>
@@ -89,6 +132,47 @@ export default function JourneySection() {
           })}
         </div>
       </div>
+      {comparisonOpen && (
+        <div
+          className="comparison-modal"
+          onClick={() => setComparisonOpen(false)}
+        >
+          <div
+            className="comparison-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="comparison-close"
+              onClick={() => setComparisonOpen(false)}
+            >
+              ✕
+            </button>
+
+            <h3>Frontend Mentor Challenge</h3>
+
+            <div className="comparison-images">
+              <div>
+                <h4>Figma Design</h4>
+
+                <img
+                  src="/images/journey/frontend-mentor-design.png"
+                  alt=""
+                />
+              </div>
+
+              <div>
+                <h4>My Implementation</h4>
+
+                <iframe
+                  src="https://hirefabiola.github.io/SBA3_DesignDevelopment/"
+                  title="Frontend Mentor Implementation"
+                  className="comparison-iframe"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
