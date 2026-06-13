@@ -69,7 +69,7 @@ export default function PortfolioHero() {
                 <div className="hero-quote">
                     <p>
                         <span className="quote-mark">“</span>
-                        A lifelong love of <br />
+                       <br/>A lifelong love of <br />
                         problem-solving <br />
                         and teaching <br />
                         shaped the way <br />I build today.

@@ -209,13 +209,13 @@ export const projects = [
       "Real-time dashboard with charts, filtering, and task analytics.",
     tech: ["React", "Charts", "Context API"],
   },
-  {
-    image: "/images/project-counter.png",
-    title: "Character Counter",
-    description:
-      "Real-time character, word, and reading time calculator.",
-    tech: ["React", "TypeScript", "LocalStorage"],
-  },
+{
+  image: "/images/project-flashcard.png",
+  title: "GenAI Flashcard App",
+  description:
+    "An AI-assisted study tool that presents learning content through an interactive flashcard experience.",
+  tech: ["React", "TypeScript", "GenAI"],
+},
   {
     image: "/images/project-bookshelf.png",
     title: "Digital Bookshelf",

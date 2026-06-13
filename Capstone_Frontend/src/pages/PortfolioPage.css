@@ -1659,3 +1659,12 @@ html {
     grid-template-columns: 1fr;
   }
 }
+
+/* Contact Page */
+.contact-title {
+  font-size: clamp(2.75rem, 5vw, 4rem);
+}
+
+.contact-title .accent {
+  color: #d59a2b;
+}

@@ -2,9 +2,11 @@ export default function ContactSection() {
     return (
         <section id="contact" className="contact-section">
             <div className="contact-content">
-                <h1 className="contact-title">
-                    Let's Build Something Together
-                </h1>
+                <h2 className="contact-title">
+                    Let's Build Something
+                    <br />
+                    <span className="accent">Together</span>
+                </h2>
                 <p className="contact-description">
                     Whether you're looking for a developer, collaborator, or problem
                     solver, I’d love to hear from you.
