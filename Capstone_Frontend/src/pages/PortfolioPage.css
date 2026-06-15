@@ -1616,7 +1616,7 @@ body {
     min-height: 0;
     margin-top: 0.5rem;
     padding: 1.25rem;
-    text-align: left;
+    text-align: center;
     pointer-events: auto;
     opacity: 0;
     transform: translateX(3rem);
@@ -1660,12 +1660,61 @@ body {
     padding: 3rem 1.25rem;
   }
 
+  .portfolio-page .journey-section,
+  .portfolio-page .projects-section,
+  .portfolio-page .capstone-section,
+  .portfolio-page .contact-section,
+  .portfolio-page .phase-content,
+  .portfolio-page .skill-card,
+  .portfolio-page .skill-card-content,
+  .portfolio-page .skill-description,
+  .portfolio-page .skill-card-highlights,
+  .portfolio-page .implementation-proof,
+  .portfolio-page .project-card,
+  .portfolio-page .capstone-content,
+  .portfolio-page .capstone-description,
+  .portfolio-page .capstone-highlights,
+  .portfolio-page .contact-content,
+  .portfolio-page .github-footer-note {
+    text-align: center;
+  }
+
   .portfolio-page .journey-groups {
     gap: 3rem;
   }
 
+  .portfolio-page .phase-tools,
+  .portfolio-page .capstone-features,
+  .portfolio-page .project-tags,
+  .portfolio-page .github-status-line {
+    justify-content: center;
+  }
+
+  .portfolio-page .capstone-features,
+  .portfolio-page .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
   .portfolio-page .skill-card {
     padding: 1rem;
+  }
+
+  .portfolio-page .skill-card-main,
+  .portfolio-page .capstone-card-main {
+    justify-items: center;
+  }
+
+  .portfolio-page .skill-thumbnail,
+  .portfolio-page .skill-thumbnail.icon,
+  .portfolio-page .skill-thumbnail.screenshot,
+  .portfolio-page .skill-card.design-card .skill-thumbnail.design,
+  .portfolio-page .capstone-card-graphic,
+  .portfolio-page .capstone-image,
+  .portfolio-page .proof-grid figure {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .portfolio-page .skill-thumbnail.screenshot,
@@ -1674,16 +1723,55 @@ body {
     height: 180px;
   }
 
+  .portfolio-page .capstone-card-content h3,
+  .portfolio-page .capstone-card-description {
+    text-align: center;
+  }
+
+  .portfolio-page .skill-details {
+    text-align: center;
+  }
+
+  .portfolio-page .skill-details li {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .portfolio-page .skill-details li::before {
+    position: static;
+    display: inline-block;
+    margin-right: 0.55rem;
+    vertical-align: middle;
+  }
+
+  .portfolio-page .comparison-link {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .portfolio-page .projects-grid {
     grid-template-columns: 1fr;
+  }
+
+  .portfolio-page .project-card img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .portfolio-page .capstone-highlights {
     grid-template-columns: 1fr;
   }
 
+  .portfolio-page .capstone-highlights div {
+    border-left: none;
+    border-top: 3px solid #d59a2b;
+  }
+
   .portfolio-page .capstone-buttons {
     flex-direction: column;
+    align-items: center;
   }
 
   .portfolio-page .btn-gold,
@@ -1702,9 +1790,27 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .portfolio-page .contact-form input,
+  .portfolio-page .contact-form textarea {
+    text-align: center;
+  }
+
+  .portfolio-page .contact-form .btn-gold {
+    align-self: center;
+  }
+
+  .portfolio-page .github-status-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    text-align: center;
+  }
+
   .portfolio-page .comparison-content {
     width: 94vw;
     padding: 1.25rem;
+    text-align: center;
   }
 
   .portfolio-page .comparison-images img,
