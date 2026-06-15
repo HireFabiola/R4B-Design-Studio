@@ -1,8 +1,44 @@
 // src/components/portfolio/TimelineSummary.tsx
 
+import { useEffect, useRef } from "react";
+
 export default function TimelineSummary() {
+  const timelineRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const cards = timelineRef.current?.querySelectorAll<HTMLElement>(
+      ".timeline-card",
+    );
+
+    if (!cards?.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+      cards.forEach((card) => card.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        rootMargin: "0px 0px -5% 0px",
+        threshold: 0.08,
+      },
+    );
+
+    cards.forEach((card) => observer.observe(card));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="timeline-summary">
+    <section className="timeline-summary" ref={timelineRef}>
       <article className="timeline-card">
         <span className="timeline-year">1999 - 2001</span>
 
@@ -57,34 +93,34 @@ export default function TimelineSummary() {
       </article>
 
       <article className="timeline-card">
-  <span className="timeline-year">2026 & BEYOND</span>
+        <span className="timeline-year">2026 & BEYOND</span>
 
-  <h3>The Return</h3>
+        <h3>The Return</h3>
 
-  <p>
-    Bringing modern engineering skills to decades of experience.
-  </p>
+        <p>
+          Bringing modern engineering skills to decades of experience.
+        </p>
 
-  <div className="timeline-story">
-    <h4>A Return, Not A Reinvention</h4>
+        <div className="timeline-story">
+          <h4>A Return, Not A Reinvention</h4>
 
-    <p>
-      Long before React and AI-assisted development, I was a dual-degree
-      engineering student at Spelman College with plans connected to Georgia
-      Tech.
-    </p>
+          <p>
+            Long before React and AI-assisted development, I was a dual-degree
+            engineering student at Spelman College with plans connected to
+            Georgia Tech.
+          </p>
 
-    <p>
-      Life changed the route, but not the destination.
-    </p>
+          <p>
+            Life changed the route, but not the destination.
+          </p>
 
-    <p>
-      Today I combine enterprise technology experience, education,
-      entrepreneurship, and modern software engineering into a unique
-      perspective on solving problems.
-    </p>
-  </div>
-</article>
+          <p>
+            Today I combine enterprise technology experience, education,
+            entrepreneurship, and modern software engineering into a unique
+            perspective on solving problems.
+          </p>
+        </div>
+      </article>
     </section>
   );
 }

@@ -1601,6 +1601,7 @@ body {
   .portfolio-page .timeline-card {
     text-align: center;
     align-items: center;
+    cursor: default;
   }
 
   .portfolio-page .timeline-card h3 {
@@ -1608,7 +1609,40 @@ body {
   }
 
   .portfolio-page .timeline-story {
-    display: none;
+    position: relative;
+    inset: auto;
+    z-index: auto;
+    width: 100%;
+    min-height: 0;
+    margin-top: 0.5rem;
+    padding: 1.25rem;
+    text-align: left;
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateX(3rem);
+    transition:
+      transform 0.6s ease,
+      opacity 0.6s ease;
+  }
+
+  .portfolio-page .timeline-card:hover .timeline-story {
+    min-height: 0;
+    opacity: 0;
+    transform: translateX(3rem);
+  }
+
+  .portfolio-page .timeline-card.is-visible .timeline-story,
+  .portfolio-page .timeline-card.is-visible:hover .timeline-story {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .portfolio-page .timeline-story h4 {
+    text-align: center;
+  }
+
+  .portfolio-page .timeline-story p + p {
+    margin-top: 0.8rem;
   }
 
   .portfolio-page .section-heading h2 {
@@ -1676,5 +1710,14 @@ body {
   .portfolio-page .comparison-images img,
   .portfolio-page .comparison-iframe {
     height: 360px;
+  }
+}
+
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .portfolio-page .timeline-story,
+  .portfolio-page .timeline-card:hover .timeline-story {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
