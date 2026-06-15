@@ -64,7 +64,6 @@ export default function HomePage() {
                         <a href="/about" onClick={() => setMenuOpen(false)}>About</a>
                         <a href="/services" onClick={() => setMenuOpen(false)}>Services</a>
                         <a href="/portfolio" onClick={() => setMenuOpen(false)}>Portfolio</a>
-                        <a href="/resources" onClick={() => setMenuOpen(false)}>Resources</a>
                         <a href="/contact" onClick={() => setMenuOpen(false)}>Contact</a>
                     </div>
                 </nav>
@@ -85,7 +84,7 @@ export default function HomePage() {
                     <div className="hero-buttons">
                         <button className="primary-btn"><Link to="/contact">LET’S BUILD TOGETHER →</Link></button>
                         <button className="secondary-btn">
-                            <span>▷</span> <Link to="/work">VIEW OUR WORK</Link>
+                            <span>▷</span> <Link to="/portfolio">VIEW OUR WORK</Link>
                         </button>
                     </div>
                 </div>
@@ -142,7 +141,7 @@ export default function HomePage() {
 
                 <FooterColumn
                     title="EXPLORE"
-                    links={["About", "Services", "Work", "Resources", "Contact"]}
+                    links={["About", "Services", "Portfolio", "Contact"]}
                 />
 
                 <FooterColumn
@@ -154,11 +153,6 @@ export default function HomePage() {
                         "Workflow Automation",
                         "Ongoing Support",
                     ]}
-                />
-
-                <FooterColumn
-                    title="RESOURCES"
-                    links={["Guides", "Templates", "Tools We Love", "Studio Notes"]}
                 />
 
                 <div className="footer-column">

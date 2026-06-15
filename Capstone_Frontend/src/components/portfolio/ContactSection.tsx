@@ -1,19 +1,43 @@
 import { useEffect, useState } from "react";
+
+type GitHubRepo = {
+    name: string;
+    updated_at: string;
+    language: string | null;
+    html_url: string;
+};
+
+type GitHubCommit = {
+    commit: {
+        message: string;
+    };
+};
+
 export default function ContactSection() {
-    const [latestRepo, setLatestRepo] = useState<any>(null);
-    const [latestCommit, setLatestCommit] = useState<any>(null);
+    const [latestRepo, setLatestRepo] = useState<GitHubRepo | null>(null);
+    const [latestCommit, setLatestCommit] = useState<GitHubCommit | null>(null);
 
     useEffect(() => {
         fetch("https://api.github.com/users/HireFabiola/repos")
-            .then((res) => res.json())
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Unable to load GitHub repositories.");
+                }
+
+                return response.json() as Promise<GitHubRepo[]>;
+            })
             .then(async (repos) => {
-                const sorted = repos.sort(
-                    (a: any, b: any) =>
+                const sorted = [...repos].sort(
+                    (a, b) =>
                         new Date(b.updated_at).getTime() -
                         new Date(a.updated_at).getTime()
                 );
 
                 const repo = sorted[0];
+
+                if (!repo) {
+                    return;
+                }
 
                 setLatestRepo(repo);
 
@@ -21,16 +45,25 @@ export default function ContactSection() {
                     `https://api.github.com/repos/HireFabiola/${repo.name}/commits`
                 );
 
-                const commits = await commitResponse.json();
+                if (!commitResponse.ok) {
+                    return;
+                }
 
-                setLatestCommit(commits[0]);
+                const commits = await commitResponse.json() as GitHubCommit[];
+
+                setLatestCommit(commits[0] ?? null);
+            })
+            .catch(() => {
+                setLatestRepo(null);
+                setLatestCommit(null);
             });
     }, []);
 
+    const commitMessage = latestCommit?.commit.message;
     const commitText =
-        latestCommit?.commit?.message?.length > 80
-            ? latestCommit.commit.message.slice(0, 80) + "..."
-            : latestCommit?.commit?.message;
+        commitMessage && commitMessage.length > 80
+            ? commitMessage.slice(0, 80) + "..."
+            : commitMessage;
 
     return (
         <section id="contact" className="contact-section">

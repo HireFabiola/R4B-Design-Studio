@@ -1,19 +1,15 @@
-// Importing necessary libraries and components
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
-// Importing layout components for the public website and admin dashboard
 import PublicLayout from "./layouts/PublicLayout";
 import AdminLayout from "./layouts/AdminLayout";
 
-// Importing page components for the public website
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ServicesPage from "./pages/ServicesPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import ContactPage from "./pages/ContactPage";
 
-// Importing page components for the admin dashboard  
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import AdminRegisterPage from "./pages/AdminRegisterPage";
@@ -27,7 +23,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Public Website routes */}
         <Route element={<PublicLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -40,12 +35,7 @@ function App() {
           <Route path="/admin/register" element={<AdminRegisterPage />} />
         </Route>
 
-        {/* Admin Website routes */}
         <Route element={<AdminLayout />}>
-          <Route path="/auth/login" element={<AdminLoginPage />} />
-          <Route path="/auth/register" element={<AdminRegisterPage />} />
-          <Route path="/admin/login" element={<AdminLoginPage />} />
-          <Route path="/admin/register" element={<AdminRegisterPage />} />
           <Route path="/admin/dashboard" element={
             <ProtectedRoute>
               <DashboardPage />
@@ -72,5 +62,4 @@ function App() {
   );
 }
 
-// Exporting the App component as the default export
 export default App;

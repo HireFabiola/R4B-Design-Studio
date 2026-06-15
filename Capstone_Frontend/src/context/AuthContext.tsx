@@ -1,44 +1,43 @@
-// Import necessary modules and types
-import { createContext, useContext, useEffect, useState } from "react";
-import type { AuthContextType } from "../types/Auth";
+import { useState } from "react";
+import { AuthContext } from "./AuthContextValue";
 import type { User } from "../types/User";
 
-// Create the AuthContext with a default value of null          
-const AuthContext =
-    createContext<AuthContextType | null>(null);
+type StoredAuth = {
+    user: User | null;
+    token: string | null;
+};
 
-// Create the AuthProvider component to manage authentication state and provide it to the rest of the app
+const getStoredAuth = (): StoredAuth => {
+    const savedUser = localStorage.getItem("user");
+    const savedToken = localStorage.getItem("token");
+
+    if (!savedUser || !savedToken) {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        return { user: null, token: null };
+    }
+
+    try {
+        return {
+            user: JSON.parse(savedUser) as User,
+            token: savedToken,
+        };
+    } catch {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        return { user: null, token: null };
+    }
+};
+
 export const AuthProvider = ({
     children,
 }: {
     children: React.ReactNode;
 }) => {
-    // State to hold the current user and authentication token
-    const [user, setUser] =
-        useState<User | null>(null);
+    const [storedAuth] = useState(getStoredAuth);
+    const [user, setUser] = useState<User | null>(storedAuth.user);
+    const [token, setToken] = useState<string | null>(storedAuth.token);
 
-    const [token, setToken] =
-        useState<string | null>(null);
-
-    const [isAuthLoading, setIsAuthLoading] = useState(true);
-
-
-    //  On component mount, check localStorage for existing token and user data to maintain authentication state across page refreshes
-    useEffect(() => {
-        const savedToken =
-            localStorage.getItem("token");
-
-        const savedUser =
-            localStorage.getItem("user");
-
-        if (savedToken && savedUser) {
-            setToken(savedToken);
-            setUser(JSON.parse(savedUser));
-        }
-        setIsAuthLoading(false);
-    }, []);
-
-    // Function to handle user login, which updates the state and localStorage with the user's information and authentication token
     const login = (
         user: User,
         token: string
@@ -57,7 +56,6 @@ export const AuthProvider = ({
         );
     };
 
-    //
     const logout = () => {
         setUser(null);
         setToken(null);
@@ -66,8 +64,6 @@ export const AuthProvider = ({
         localStorage.removeItem("user");
     };
 
-
-    // Provide the authentication state and functions to the rest of the app through the AuthContext.Provider
     return (
         <AuthContext.Provider
             value={{
@@ -75,24 +71,9 @@ export const AuthProvider = ({
                 token,
                 login,
                 logout,
-                isAuthLoading,
             }}
         >
             {children}
         </AuthContext.Provider>
     );
-};
-
-// Custom hook to access the authentication context, ensuring that it is used within the AuthProvider
-export const useAuth = () => {
-    const context =
-        useContext(AuthContext);
-
-    if (!context) {
-        throw new Error(
-            "useAuth must be used inside AuthProvider"
-        );
-    }
-
-    return context;
 };
