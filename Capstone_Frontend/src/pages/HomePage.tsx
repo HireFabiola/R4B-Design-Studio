@@ -58,7 +58,7 @@ export default function HomePage() {
       <section className="home-hero">
         <nav className="home-navbar" aria-label="Primary navigation">
           <Link to="/" className="home-brand" aria-label="R4B Design Studio home">
-            <img src="/images/r4b-logo.png" alt="" />
+            <img src="/images/r4b-logo-mark.png" alt="" />
             <span className="home-brand-divider" aria-hidden="true" />
             <span className="home-brand-name">
               <strong>Design</strong> Studio

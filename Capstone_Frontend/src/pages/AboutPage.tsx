@@ -42,12 +42,30 @@ const process = [
   },
 ];
 
+const HandshakeIcon = () => (
+  <svg
+    className="about-handshake-icon"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M7.5 11.6 10 9.1a2.8 2.8 0 0 1 3.95 0l.55.55" />
+    <path d="m14.5 9.65 1.2-1.2a2.5 2.5 0 0 1 3.55 0l1.45 1.45-4.6 4.6" />
+    <path d="m3.3 9.9 1.45-1.45a2.5 2.5 0 0 1 3.55 0l.9.9" />
+    <path d="m8.35 14.65 2.2 2.2a1.3 1.3 0 0 0 1.85 0 1.3 1.3 0 0 0 0-1.85" />
+    <path d="m10.35 12.65 3.2 3.2a1.3 1.3 0 0 0 1.85-1.85l-2.1-2.1" />
+    <path d="m14.7 12.9 1.25 1.25a1.3 1.3 0 0 0 1.85-1.85l-2.2-2.2" />
+    <path d="m5.35 11.95 3 3" />
+    <path d="m18.65 11.95-2.7 2.7" />
+  </svg>
+);
+
 const values = [
   { icon: "bi-briefcase", label: "Business Understanding" },
   { icon: "bi-pie-chart", label: "Analytical Problem Solving" },
   { icon: "bi-person", label: "User-Centered Design" },
   { icon: "bi-code-slash", label: "Modern Development" },
-  { icon: "bi-handshake", label: "Long-Term Partnership" },
+  { icon: "handshake", label: "Long-Term Partnership" },
 ];
 
 export default function AboutPage() {
@@ -58,7 +76,7 @@ export default function AboutPage() {
       <header className="about-header">
         <nav className="about-navbar" aria-label="Primary navigation">
           <Link to="/" className="home-brand" aria-label="R4B Design Studio home">
-            <img src="/images/r4b-logo.png" alt="" />
+            <img src="/images/r4b-logo-mark.png" alt="" />
             <span className="home-brand-divider" aria-hidden="true" />
             <span className="home-brand-name">
               <strong>Design</strong> Studio
@@ -203,7 +221,11 @@ export default function AboutPage() {
         <div className="about-values-grid">
           {values.map((value) => (
             <article key={value.label}>
-              <i className={`bi ${value.icon}`} aria-hidden="true" />
+              {value.icon === "handshake" ? (
+                <HandshakeIcon />
+              ) : (
+                <i className={`bi ${value.icon}`} aria-hidden="true" />
+              )}
               <span>{value.label}</span>
             </article>
           ))}
@@ -212,7 +234,8 @@ export default function AboutPage() {
         <blockquote>
           <i className="bi bi-quote" aria-hidden="true" />
           We understand that technology is not the goal.
-          <strong> Results are.</strong>
+          <br />
+          <strong>Results are.</strong>
         </blockquote>
       </section>
 

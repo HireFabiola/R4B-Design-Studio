@@ -602,7 +602,13 @@ main:not(.public-layout-main) {
 }
 
 .about-navbar .home-brand img {
+  width: 96px;
+  height: 78px;
   filter: brightness(0) invert(1);
+}
+
+.about-navbar .home-brand-divider {
+  align-self: center;
 }
 
 .about-navbar .home-nav-toggle span {
@@ -621,11 +627,10 @@ main:not(.public-layout-main) {
   background:
     linear-gradient(
       90deg,
-      rgba(16, 27, 24, 0.98) 0%,
-      rgba(16, 27, 24, 0.91) 35%,
-      rgba(16, 27, 24, 0.58) 57%,
-      rgba(16, 27, 24, 0.2) 78%,
-      rgba(16, 27, 24, 0.08) 100%
+      rgba(8, 17, 14, 0.98) 0%,
+      rgba(8, 17, 14, 0.9) 34%,
+      rgba(8, 17, 14, 0.55) 57%,
+      rgba(8, 17, 14, 0.16) 100%
     ),
     url("/images/about-hero-tree-roots.png") right center / cover no-repeat,
     linear-gradient(90deg, #101b18 0%, #16241e 48%, #0c1713 100%);
@@ -633,7 +638,6 @@ main:not(.public-layout-main) {
   color: #f8f3e9;
 }
 
-.about-hero::before,
 .about-values::before,
 .about-cta::before {
   content: "";
@@ -895,9 +899,20 @@ main:not(.public-layout-main) {
   line-height: 1.4;
 }
 
-.about-values-grid i {
+.about-values-grid i,
+.about-values-grid svg {
   color: #aebe73;
   font-size: 2.1rem;
+}
+
+.about-values-grid svg {
+  width: 2.35rem;
+  height: 2.35rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .about-values blockquote {
@@ -946,7 +961,7 @@ main:not(.public-layout-main) {
   max-height: 470px;
   object-fit: contain;
   object-position: bottom;
-  transform: translateY(clamp(rem, 3vw, 2.6rem));
+  transform: translateY(clamp(0.25rem, 1.2vw, 1rem));
   filter: drop-shadow(0 24px 20px rgba(48, 32, 22, 0.16));
 }
 
@@ -1015,6 +1030,278 @@ main:not(.public-layout-main) {
   transform: translateY(-2px);
 }
 
+/* =====================================================
+   SERVICES PAGE
+===================================================== */
+
+.services-page {
+  width: 100%;
+  max-width: none !important;
+  margin: 0;
+  padding: 0 !important;
+  background: #fbf8f1;
+  color: #182522;
+  font-family: Arial, sans-serif;
+}
+
+.services-hero {
+  position: relative;
+  min-height: 590px;
+  padding: clamp(7rem, 10vw, 9rem) max(6vw, calc((100vw - 1240px) / 2))
+    clamp(4rem, 7vw, 7rem);
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(400px, 1.1fr);
+  align-items: center;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(8, 17, 14, 0.98) 0%,
+      rgba(8, 17, 14, 0.9) 34%,
+      rgba(8, 17, 14, 0.55) 57%,
+      rgba(8, 17, 14, 0.16) 100%
+    ),
+    url("/images/about-hero-tree-roots.png") right center / cover no-repeat,
+    linear-gradient(90deg, #101b18 0%, #16241e 48%, #0c1713 100%);
+  background-attachment: scroll, fixed, scroll;
+  color: #f8f3e9;
+}
+
+.services-hero h1 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(3.5rem, 5.5vw, 5.7rem);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+}
+
+.services-hero .about-hero-content > p:not(.about-kicker) {
+  max-width: 540px;
+  color: #f1f3ef;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.services-hero-button {
+  width: fit-content;
+  margin-top: 1.35rem;
+  padding: 1rem 1.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  border-radius: 5px;
+  background: #8b9b55;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 800;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.services-hero-button:hover {
+  background: #a1b264;
+  transform: translateY(-2px);
+}
+
+.services-list {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(213, 154, 43, 0.08), transparent 32%),
+    #fbf8f1;
+}
+
+.services-heading-line {
+  width: 36px;
+  height: 2px;
+  margin: 0.85rem auto 0;
+  display: block;
+  background: #d69a2d;
+}
+
+.services-card-grid {
+  margin-top: 2.8rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.services-card {
+  min-height: 270px;
+  padding: clamp(1.5rem, 2.5vw, 2.25rem);
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  gap: 1.25rem;
+  border: 1px solid rgba(216, 198, 181, 0.78);
+  border-radius: 10px;
+  background: rgba(255, 253, 248, 0.9);
+  box-shadow: 0 14px 35px rgba(34, 27, 17, 0.08);
+}
+
+.services-card-icon {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #edf0e5;
+  color: #273b34;
+  font-size: 1.75rem;
+}
+
+.services-card h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.65rem;
+  line-height: 1.1;
+}
+
+.services-card span {
+  width: 38px;
+  height: 2px;
+  margin: 1rem 0;
+  display: block;
+  background: #d69a2d;
+}
+
+.services-card p {
+  margin: 0;
+  color: #303f3b;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.services-process {
+  background: #eef0e7;
+}
+
+.services-cta {
+  position: relative;
+  padding: 3rem max(6vw, calc((100vw - 1240px) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  overflow: hidden;
+  background: #132a23;
+  color: #fff;
+}
+
+.services-cta::before,
+.services-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  background: url("/images/leaf-outline.png") right center / cover no-repeat;
+  pointer-events: none;
+}
+
+.services-cta > *,
+.services-footer > * {
+  position: relative;
+  z-index: 1;
+}
+
+.services-cta h2 {
+  max-width: 650px;
+  margin: 0 0 0.65rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.4rem, 3.5vw, 3.6rem);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.services-cta p {
+  max-width: 700px;
+  margin: 0;
+  color: #e5e8df;
+  line-height: 1.65;
+}
+
+.services-footer {
+  position: relative;
+  padding: 2.4rem max(6vw, calc((100vw - 1240px) / 2)) 2rem;
+  display: grid;
+  grid-template-columns: minmax(300px, 1.35fr) 0.75fr 1fr 1.15fr;
+  gap: 2rem;
+  overflow: hidden;
+  background: #0e211c;
+  color: #f5f0e8;
+}
+
+.services-footer-brand {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.services-footer-brand img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.services-footer-title,
+.services-footer h2 {
+  margin: 0 0 0.75rem;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.services-footer-brand p:last-child,
+.services-footer p,
+.services-footer a {
+  margin: 0 0 0.55rem;
+  display: block;
+  color: #dce2d7;
+  text-decoration: none;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.services-footer a:hover {
+  color: #aebe73;
+}
+
+.services-footer-contact a,
+.services-footer-contact p {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.services-footer-contact i {
+  color: #aebe73;
+}
+
+.services-social-links {
+  margin-top: 0.9rem;
+  display: flex;
+  gap: 0.9rem;
+}
+
+.services-social-links a {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 1024px) {
+  .services-hero {
+    grid-template-columns: 1fr 0.75fr;
+  }
+
+  .services-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .services-footer {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
 @media (max-width: 1024px) {
   .about-hero {
     grid-template-columns: 1fr 0.75fr;
@@ -1046,6 +1333,76 @@ main:not(.public-layout-main) {
 }
 
 @media (max-width: 700px) {
+  .about-page h1,
+  .about-page h2,
+  .about-page h3,
+  .services-page h1,
+  .services-page h2,
+  .services-page h3 {
+    text-align: center;
+  }
+
+  .services-hero {
+    min-height: auto;
+    padding: 7rem 1.5rem 4rem;
+    grid-template-columns: 1fr;
+    text-align: center;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(8, 17, 14, 0.94) 0%,
+        rgba(8, 17, 14, 0.84) 48%,
+        rgba(8, 17, 14, 0.58) 100%
+      ),
+      url("/images/about-hero-tree-roots.png") 70% center / cover no-repeat,
+      #101b18;
+    background-attachment: scroll;
+  }
+
+  .services-hero .about-hero-content {
+    margin: 0 auto;
+  }
+
+  .services-hero-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .services-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-card {
+    min-height: auto;
+  }
+
+  .services-cta {
+    padding: 3.5rem 1.5rem;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .services-footer {
+    grid-template-columns: 1fr;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+  }
+
+  .services-footer-brand {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .services-footer-brand img {
+    margin: 0 auto;
+  }
+
+  .services-footer-contact a,
+  .services-footer-contact p,
+  .services-social-links {
+    justify-content: center;
+  }
+
   .about-navbar {
     height: 62px;
     padding: 0 1rem;
@@ -1065,9 +1422,9 @@ main:not(.public-layout-main) {
     background:
       linear-gradient(
         180deg,
-        rgba(16, 27, 24, 0.94) 0%,
-        rgba(16, 27, 24, 0.84) 48%,
-        rgba(16, 27, 24, 0.58) 100%
+        rgba(8, 17, 14, 0.94) 0%,
+        rgba(8, 17, 14, 0.84) 48%,
+        rgba(8, 17, 14, 0.58) 100%
       ),
       url("/images/about-hero-tree-roots.png") 70% center / cover no-repeat,
       #101b18;
@@ -1098,6 +1455,7 @@ main:not(.public-layout-main) {
   }
 
   .about-founder {
+    padding-bottom: 0;
     background-attachment: scroll;
     background-position: right top;
   }
@@ -1154,7 +1512,14 @@ main:not(.public-layout-main) {
   }
 
   .about-founder-portrait {
-    min-height: 420px;
+    min-height: auto;
+    margin-bottom: 0;
+  }
+
+  .about-founder-portrait img {
+    width: min(86vw, 420px);
+    max-height: none;
+    transform: translateY(0.6rem);
   }
 
   .about-founder-copy {
@@ -1168,6 +1533,21 @@ main:not(.public-layout-main) {
 }
 
 @media (max-width: 480px) {
+  .services-hero h1 {
+    font-size: 3.15rem;
+  }
+
+  .services-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .services-card-icon,
+  .services-card span {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
   .about-hero h1 {
     font-size: 3.25rem;
   }
@@ -1207,7 +1587,12 @@ main:not(.public-layout-main) {
   }
 
   .about-founder-portrait {
-    min-height: 340px;
+    min-height: auto;
+  }
+
+  .about-founder-portrait img {
+    width: min(92vw, 360px);
+    transform: translateY(0.45rem);
   }
 
   .about-cta-button {
