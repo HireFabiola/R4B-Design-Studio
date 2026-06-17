@@ -21,20 +21,62 @@ body {
 }
 
 .portfolio-shell {
-  width: min(100%, 1440px);
-  max-width: 1440px;
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
   overflow: hidden;
   background: #fffaf3;
 }
 
 .portfolio-hero,
-.timeline-summary,
 .journey-section,
 .projects-section,
 .capstone-section,
-.portfolio-footer-quote {
+.portfolio-footer-quote,
+.contact-section {
   width: 100%;
+  max-width: 1440px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.back-to-top {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 80;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 250, 243, 0.72);
+  border-radius: 50%;
+  background: #062f28;
+  color: #fffaf3;
+  box-shadow: 0 14px 30px rgba(6, 47, 40, 0.24);
+  cursor: pointer;
+  font-size: 1.35rem;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.75rem);
+  transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  background: #c87900;
+}
+
+.back-to-top:focus-visible {
+  outline: 3px solid rgba(200, 121, 0, 0.32);
+  outline-offset: 3px;
 }
 
 
@@ -114,6 +156,7 @@ body {
 
 .portfolio-hero {
   position: relative;
+  isolation: isolate;
   min-height: 620px;
   padding: 3rem 6% 5.5rem;
 
@@ -133,6 +176,20 @@ body {
   background-position: right center;
   background-size: cover;
 
+}
+
+.portfolio-hero::before,
+.capstone-section::before,
+.contact-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: 50%;
+  z-index: -1;
+  width: 100vw;
+  transform: translateX(-50%);
+  background: inherit;
+  pointer-events: none;
 }
 
 .portfolio-hero-content {
@@ -1044,6 +1101,11 @@ body {
   background: #fff;
 }
 
+.comparison-images img {
+  object-fit: contain;
+  object-position: top center;
+}
+
 /* PROJECTS */
 
 .projects-section {
@@ -1054,10 +1116,21 @@ body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1.25rem;
+  align-items: stretch;
+}
+
+.project-card-link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
 }
 
 .project-card {
+  height: 100%;
   padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
   background: #fffdf9;
   border: 1px solid #ead8c3;
   border-radius: 10px;
@@ -1086,9 +1159,25 @@ body {
   color: #425651;
 }
 
+.project-tags {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.project-launch {
+  margin-top: 0.9rem;
+  display: inline-block;
+  color: #ad7610;
+  font-weight: 800;
+}
+
 /* CAPSTONE */
 
 .capstone-section {
+  position: relative;
+  isolation: isolate;
   padding: clamp(4rem, 6vw, 6rem) 7%;
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
@@ -1304,6 +1393,8 @@ body {
 
 /* Contact FORM */
 .contact-section {
+  position: relative;
+  isolation: isolate;
   padding: 5rem 7%;
   background: #24423d;
   color: #fffaf3;
@@ -1927,6 +2018,10 @@ body {
 }
 
 @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .portfolio-page .back-to-top {
+    transition: none;
+  }
+
   .portfolio-page .timeline-story,
   .portfolio-page .timeline-card:hover .timeline-story {
     opacity: 1;

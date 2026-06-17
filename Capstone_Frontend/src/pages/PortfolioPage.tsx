@@ -1,5 +1,5 @@
 // src/pages/PortfolioPage.tsx
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./PortfolioPage.css";
 
 import PortfolioHero from "../components/portfolio/PortfolioHero.tsx";
@@ -12,6 +12,31 @@ import ContactSection from "../components/portfolio/ContactSection.tsx";
 
 export default function PortfolioPage() {
   const [resumeOpen, setResumeOpen] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 700);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+  };
 
   return (
     <div className="portfolio-page">
@@ -105,6 +130,15 @@ export default function PortfolioPage() {
           </div>
         </div>
       )}
+
+      <button
+        type="button"
+        className={`back-to-top ${showBackToTop ? "is-visible" : ""}`}
+        onClick={scrollToTop}
+        aria-label="Back to top"
+      >
+        ↑
+      </button>
     </div>
   );
 }

@@ -83,7 +83,9 @@ export default function CapstoneSection() {
           </Link>
 
           <a
-            href="#"
+            href="https://github.com/HireFabiola/R4B-Design-Studio"
+            target="_blank"
+            rel="noreferrer"
             className="btn-outline-light"
           >
             GitHub Repository

@@ -155,7 +155,7 @@ export const skillCards = [
     description:
       "Built component-based applications with state, routing, and API integration.",
     tags: ["React", "Hooks", "React Router", "API"],
-    linkLabel: "View Project",
+    linkLabel: "Highlights",
     details: [
       "Built reusable component-based user interfaces.",
       "Managed application state using modern React patterns.",
@@ -171,7 +171,7 @@ export const skillCards = [
     description:
       "Developed server-side features using APIs, authentication, and database logic.",
     tags: ["Node.js", "Express", "MongoDB", "JWT"],
-    linkLabel: "View Project",
+    linkLabel: "Highlights",
     details: [
       "Designed RESTful APIs to support frontend applications.",
       "Built server-side functionality using Node.js and Express.",
@@ -201,7 +201,7 @@ export const projects = [
     description:
       "Travel exploration app with maps, APIs, and state management.",
     tech: ["TypeScript", "API", "Bootstrap"],
-    liveUrl: "https://hirefabiola.github.io/REST_Countries_API/",
+    liveUrl: "https://hirefabiola.github.io/Wanderlust-Countries-Explorer/",
   },
   {
     image: "/images/project-dashboard.png",

@@ -32,6 +32,8 @@ const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT as
   | string
   | undefined;
 
+const hasApiEndpoint = Boolean(import.meta.env.VITE_API_URL);
+
 async function submitToFormspree(formData: InquiryForm) {
   if (!formspreeEndpoint) {
     throw new Error("Formspree endpoint is not configured.");
@@ -88,14 +90,29 @@ export default function ContactPage() {
     setSubmitError("");
 
     try {
-      await submitToFormspree(formData);
+      let emailSent = false;
+      let inquirySaved = false;
 
-      if (import.meta.env.VITE_API_URL) {
+      if (formspreeEndpoint) {
+        try {
+          await submitToFormspree(formData);
+          emailSent = true;
+        } catch (error) {
+          console.warn("Inquiry CRM save can continue, but email failed:", error);
+        }
+      }
+
+      if (hasApiEndpoint) {
         try {
           await createInquiry(formData);
+          inquirySaved = true;
         } catch (error) {
-          console.warn("Inquiry email sent, but CRM save failed:", error);
+          console.warn("Inquiry CRM save failed:", error);
         }
+      }
+
+      if (!emailSent && !inquirySaved) {
+        throw new Error("Inquiry could not be submitted.");
       }
 
       setFormData(initialForm);
